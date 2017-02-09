@@ -1,0 +1,53 @@
+{
+  "name": "browser-as-a-service",
+  "description": "A web browser hosted as a service, to render your JavaScript web pages as HTML",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hfreire/browser-as-a-service.git"
+  },
+  "author": "Hugo Freire <hugo@exec.sh>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hfreire/browser-as-a-service/issues"
+  },
+  "homepage": "https://github.com/hfreire/browser-as-a-service#readme",
+  "dependencies": {
+    "bluebird": "3.4.0",
+    "lodash": "4.17.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "7.1.1",
+    "chai": "3.5.0",
+    "chai-as-promised": "6.0.0",
+    "coveralls": "2.11.15",
+    "eslint": "3.3.1",
+    "eslint-config-standard": "6.0.0",
+    "eslint-plugin-mocha": "4.3.0",
+    "eslint-plugin-promise": "3.4.0",
+    "eslint-plugin-standard": "2.0.0",
+    "istanbul": "0.4.5",
+    "mocha": "3.0.2",
+    "semantic-release": "6.3.2",
+    "pre-git": "3.12.1",
+    "standard": "8.0.0",
+    "testdouble": "1.9.0"
+  },
+  "config": {
+    "pre-git": {
+      "commit-msg": "conventional"
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf coverage",
+    "lint": "node_modules/.bin/eslint .",
+    "coverage": "node_modules/.bin/istanbul cover --include-all-sources --root src --print detail ./node_modules/mocha/bin/_mocha -- --recursive test",
+    "test": "npm run lint && npm run coverage",
+    "build": "$(which docker) build -t hfreire/$npm_package_name:$npm_package_version --build-arg=VERSION=`$(which git) rev-parse --abbrev-ref HEAD` --build-arg=VERSION_COMMIT=`$(which git) rev-parse --short HEAD` --build-arg=VERSION_BUILD_DATE=\"`$(which date)`\" -f ./share/docker/Dockerfile .",
+    "push": "$(which docker) push hfreire/$npm_package_name:$npm_package_version",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "start": "node src/app.js",
+    "semantic-release": "./node_modules/.bin/semantic-release pre && node_modules/.bin/semantic-release post",
+    "commit": "./node_modules/.bin/commit-wizard"
+  }
+}
