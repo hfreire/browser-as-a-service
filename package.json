@@ -14,15 +14,15 @@
   "homepage": "https://github.com/hfreire/browser-as-a-service#readme",
   "dependencies": {
     "bluebird": "3.4.7",
-    "boom": "^4.2.0",
-    "hapi": "^16.1.0",
-    "health-checkup": "^1.0.4",
+    "boom": "4.2.0",
+    "hapi": "16.1.0",
+    "health-checkup": "1.0.4",
     "lodash": "4.17.4",
-    "moment": "^2.17.1",
-    "nightmare": "^2.9.1",
-    "random-http-useragent": "^1.0.1",
-    "rollbar": "^0.6.3",
-    "winston": "^2.3.1"
+    "moment": "2.17.1",
+    "nightmare": "2.9.1",
+    "random-http-useragent": "1.0.1",
+    "rollbar": "0.6.3",
+    "winston": "2.3.1"
   },
   "devDependencies": {
     "babel-eslint": "7.1.1",
