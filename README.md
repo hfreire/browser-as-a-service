@@ -1,4 +1,4 @@
-# A web browser hosted as a service, to render your JavaScript web pages as HTML
+# A web browser :earth_americas: hosted as a service, to render your JavaScript web pages as HTML
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Build Status](https://travis-ci.org/hfreire/browser-as-a-service.svg?branch=master)](https://travis-ci.org/hfreire/browser-as-a-service)
