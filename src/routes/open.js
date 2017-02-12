@@ -20,7 +20,7 @@ class Open extends Route {
   handler ({ query }, reply) {
     const { url, iframe } = query
 
-    return Browser.open(url, iframe)
+    return Browser.open(url, {}, iframe)
       .then((report) => reply(null, report))
       .catch((error) => reply(Boom.badImplementation(error)))
   }
