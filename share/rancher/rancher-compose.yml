@@ -1,11 +1,22 @@
 server:
   scale: 3
-   health_check:
-     port: 3000
-     request_line: GET /ping HTTP/1.1
-     interval: 8000
-     initializing_timeout: 10000
-     response_timeout: 2000
-     healthy_threshold: 2
-     unhealthy_threshold: 4
-     strategy: recreate
+  health_check:
+    port: 3000
+    interval: 8000
+    initializing_timeout: 60000
+    unhealthy_threshold: 1
+    strategy: recreate
+    response_timeout: 2000
+    request_line: GET /ping HTTP/1.1
+    healthy_threshold: 2
+lb:
+  scale: 1
+  load_balancer_config:
+    haproxy_config:
+      defaults: |-
+        option http-keep-alive
+        timeout connect 10s
+        timeout client 300s
+        timeout http-request 10s
+        timeout queue 10s
+        timeout server 300s
