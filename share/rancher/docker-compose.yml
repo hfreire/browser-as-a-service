@@ -1,3 +1,5 @@
 server:
-  image: hfreire/browser-as-a-service:1.0.0
+  image: hfreire/browser-as-a-service:0.0.0
   restart: always
+  ports:
+    - "9454:3000"
