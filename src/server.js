@@ -75,11 +75,6 @@ class Server {
       Logger.info(`${remoteAddress} - "${method.toUpperCase()} ${path}" ${statusCode} ${duration} "${userAgent}" "${apiKey}"`)
     })
     this._httpServer.on('request-error', (request, error) => Logger.error(error))
-    this._httpServer.on('log', (event, tags) => {
-      if (tags.error) {
-        Logger.error(event.data)
-      }
-    })
 
     this._httpServer.auth.scheme('apiKey', apiKeyScheme)
     this._httpServer.auth.strategy('default', 'apiKey')

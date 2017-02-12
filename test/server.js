@@ -24,6 +24,10 @@ describe('Server', () => {
     let healthcheckRoute
     let openRoute
 
+    before(() => {
+      subject = require('../src/server')
+    })
+
     beforeEach(() => {
       td.replace('hapi', { 'Server': function () { return httpServer } })
 
@@ -66,12 +70,6 @@ describe('Server', () => {
       subject = require('../src/server')
 
       td.verify(httpServer.on('request-error'), { times: 1, ignoreExtraArgs: true })
-    })
-
-    it('should listen on hapi server log event', () => {
-      subject = require('../src/server')
-
-      td.verify(httpServer.on('stop'), { times: 1, ignoreExtraArgs: true })
     })
 
     it('should configure route to ping ', () => {
