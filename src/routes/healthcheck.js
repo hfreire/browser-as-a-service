@@ -11,9 +11,9 @@ const _ = require('lodash')
 
 const Health = require('health-checkup')
 
-class Ping extends Route {
+class Healthcheck extends Route {
   constructor () {
-    super('GET', '/healthcheck')
+    super('GET', '/healthcheck', 'Health check', 'Returns a list of health checks')
   }
 
   handler (request, reply) {
@@ -30,4 +30,4 @@ class Ping extends Route {
   }
 }
 
-module.exports = new Ping()
+module.exports = new Healthcheck()

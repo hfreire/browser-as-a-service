@@ -7,9 +7,11 @@
 
 const Route = require('./route')
 
+const Joi = require('joi')
+
 class Ping extends Route {
   constructor () {
-    super('GET', '/ping')
+    super('GET', '/ping', 'Ping service', 'Returns a pong for every ping')
   }
 
   handler (request, reply) {
@@ -18,6 +20,21 @@ class Ping extends Route {
 
   auth () {
     return false
+  }
+
+  plugins () {
+    return {
+      'hapi-swagger': {
+        responses: {
+          200: {
+            description: 'Service is alive',
+            schema: Joi.object({
+              answer: 'pong'
+            }).label('Reply')
+          }
+        }
+      }
+    }
   }
 }
 

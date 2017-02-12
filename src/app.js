@@ -9,8 +9,10 @@ const VERSION = process.env.VERSION
 const VERSION_COMMIT = process.env.VERSION_COMMIT
 const VERSION_BUILD_DATE = process.env.VERSION_BUILD_DATE
 
+const Logger = require('./utils/logger')
+
 if (VERSION && VERSION_COMMIT && VERSION_BUILD_DATE) {
-  console.log(`Running version ${VERSION} from commit ${VERSION_COMMIT} built on ${VERSION_BUILD_DATE}`)
+  Logger.info(`Running version ${VERSION} from commit ${VERSION_COMMIT} built on ${VERSION_BUILD_DATE}`)
 }
 
 const Server = require('./server')
@@ -47,10 +49,10 @@ process.on('exit', function () {
 })
 
 process.on('uncaughtException', error => {
-  console.error(error, _shutdown)
+  Logger.error(error, _shutdown)
 })
 process.on('unhandledRejection', error => {
-  console.error(error, _shutdown)
+  Logger.error(error, _shutdown)
 })
 
 Server.start()

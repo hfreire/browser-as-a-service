@@ -10,7 +10,7 @@ describe('Server', () => {
   let httpServer
 
   before(() => {
-    httpServer = td.object([ 'connection', 'auth', 'on', 'route', 'start', 'stop' ])
+    httpServer = td.object([ 'connection', 'auth', 'on', 'route', 'start', 'stop', 'register' ])
     httpServer.auth.scheme = td.function()
     httpServer.auth.strategy = td.function()
     httpServer.auth.default = td.function()

@@ -7,28 +7,43 @@
 
 const Route = require('./route')
 
+const Joi = require('joi')
 const Boom = require('boom')
 
 const Browser = require('../browser')
 
 class Open extends Route {
   constructor () {
-    super('GET', '/open')
+    super('GET', '/open', 'Opens web page in headless browser', 'Returns opened web page')
   }
 
   handler ({ query }, reply) {
-    const url = query.url
+    const { url, iframe } = query
 
-    if (!url) {
-      return reply(Boom.badRequest('Missing URL parameter'))
-    }
-
-    return Browser.open(url)
-      .then((page) => reply(null, { page }))
+    return Browser.open(url, iframe)
+      .then((report) => reply(null, report))
+      .catch((error) => reply(Boom.badImplementation(error)))
   }
 
-  auth () {
-    return false
+  validate () {
+    return {
+      query: {
+        key: Joi.string()
+          .optional()
+          .description('the access API key'),
+        url: Joi.string()
+          .required()
+          .description('the web page URL to open'),
+        iframe: Joi.string()
+          .optional()
+          .description('the IFrame selector')
+      },
+      headers: Joi.object({
+        'x-api-key': Joi.string()
+          .optional()
+          .description('the access API key')
+      }).unknown()
+    }
   }
 }
 

@@ -8,6 +8,7 @@
 const _ = require('lodash')
 
 const Nightmare = require('nightmare')
+require('nightmare-iframe-manager')(Nightmare)
 
 const RandomUserAgent = require('random-http-useragent')
 
@@ -21,20 +22,59 @@ class Browser {
     })
   }
 
-  open (url) {
+  open (url, iframe) {
+    const report = {}
+
     return RandomUserAgent.get()
       .then((userAgent) => {
         const nightmare = Nightmare(this.options)
-        return nightmare
-          .useragent(userAgent)
-          .goto(url)
-          .evaluate(() => {
-            /* eslint-disable */
-            return document.documentElement.outerHTML
-            /* eslint-enable */
-          })
-          .end()
-          .then((page) => page)
+
+        if (iframe) {
+          return nightmare
+            .useragent(userAgent)
+            .on('console', (type, message) => {
+              if (!report.console) {
+                report.console = []
+              }
+
+              report.console.push({ type, message })
+            })
+            .goto(url)
+            .enterIFrame(iframe)
+            .evaluate(() => {
+              /* eslint-disable */
+              return document.documentElement.outerHTML
+              /* eslint-enable */
+            })
+            .end()
+            .then((elements) => {
+              report.elements = elements
+
+              return report
+            })
+        } else {
+          return nightmare
+            .useragent(userAgent)
+            .on('console', (type, message) => {
+              if (!report.console) {
+                report.console = []
+              }
+
+              report.console.push({ type, message })
+            })
+            .goto(url)
+            .evaluate(() => {
+              /* eslint-disable */
+              return document.documentElement.outerHTML
+              /* eslint-enable */
+            })
+            .end()
+            .then((elements) => {
+              report.elements = elements
+
+              return report
+            })
+        }
       })
   }
 }

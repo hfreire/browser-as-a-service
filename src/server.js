@@ -5,6 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+const NAME = process.env.NAME
+const VERSION = process.env.VERSION
 const PORT = process.env.PORT || 3000
 const API_KEYS = process.env.API_KEYS || ''
 
@@ -17,15 +19,17 @@ const Health = require('health-checkup')
 
 const Hapi = require('hapi')
 const Boom = require('boom')
+const Inert = require('inert')
+const Vision = require('vision')
 
 const apiKeys = _.words(API_KEYS)
 
 const apiKeyScheme = () => {
   return {
     authenticate: function (request, reply) {
-      const req = request.raw.req
+      const { headers, query } = request
 
-      const apiKey = req.headers[ 'x-api-key' ]
+      const apiKey = headers[ 'x-api-key' ] || query && query.key
       if (!apiKey) {
         return reply(Boom.unauthorized('Missing API key'))
       }
@@ -39,16 +43,36 @@ const apiKeyScheme = () => {
   }
 }
 
+const HapiSwagger = {
+  register: require('hapi-swagger'),
+  options: {
+    info: { title: NAME, version: VERSION },
+    documentationPath: '/docs',
+    tags: [
+      { name: 'open', description: 'Open URL' },
+      { name: 'ping', description: 'Query service status' },
+      { name: 'healthcheck', description: 'Query service health' }
+    ]
+  }
+}
+
 class Server {
   constructor (options = { port: PORT }) {
-    this._httpServer = new Hapi.Server({ debug: false, load: { sampleInterval: 1000 } })
+    this._httpServer = new Hapi.Server({ debug: false, load: { sampleInterval: 60000 } })
 
     this._httpServer.connection(options)
 
     this._httpServer.on('start', () => Logger.info(`Started HTTP server on port ${PORT}`))
     this._httpServer.on('stop', () => Logger.info('Stopped HTTP server'))
-    this._httpServer.on('response', (request) => {
-      Logger.info(`${request.info.remoteAddress} - "${request.method.toUpperCase()} ${request.url.path}" ${request.response.statusCode} ${Date.now() - request.info.received} "${request.headers[ 'user-agent' ]}" "${request.headers[ 'x-api-key' ]}"`)
+    this._httpServer.on('response', ({ info, method, url, response, headers, query }) => {
+      const remoteAddress = info.remoteAddress
+      const path = url.path
+      const statusCode = response.statusCode
+      const duration = Date.now() - info.received
+      const userAgent = headers[ 'user-agent' ]
+      const apiKey = headers[ 'x-api-key' ] || query.key || '-'
+
+      Logger.info(`${remoteAddress} - "${method.toUpperCase()} ${path}" ${statusCode} ${duration} "${userAgent}" "${apiKey}"`)
     })
     this._httpServer.on('request-error', (request, error) => Logger.error(error))
     this._httpServer.on('log', (event, tags) => {
@@ -61,9 +85,11 @@ class Server {
     this._httpServer.auth.strategy('default', 'apiKey')
     this._httpServer.auth.default('default')
 
+    this._httpServer.register([ Inert, Vision, HapiSwagger ])
+
+    this._httpServer.route(require('./routes/open').toRoute())
     this._httpServer.route(require('./routes/ping').toRoute())
     this._httpServer.route(require('./routes/healthcheck').toRoute())
-    this._httpServer.route(require('./routes/open').toRoute())
 
     Health.addCheck('server', () => new Promise((resolve, reject) => {
       if (!this._httpServer.load) {

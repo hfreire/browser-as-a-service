@@ -6,9 +6,11 @@
  */
 
 class Route {
-  constructor (method, path) {
+  constructor (method, path, description, notes) {
     this.method = method
     this.path = path
+    this.description = description
+    this.notes = notes
   }
 
   handler (request, reply) {
@@ -17,13 +19,22 @@ class Route {
 
   auth () {}
 
+  plugins () {}
+
+  validate () {}
+
   toRoute () {
     return {
       method: this.method,
       path: this.path,
       config: {
         handler: this.handler,
-        auth: this.auth()
+        auth: this.auth(),
+        plugins: this.plugins(),
+        tags: [ 'api' ],
+        description: this.description,
+        notes: this.notes,
+        validate: this.validate()
       }
     }
   }
