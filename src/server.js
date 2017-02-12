@@ -22,7 +22,7 @@ const Boom = require('boom')
 const Inert = require('inert')
 const Vision = require('vision')
 
-const apiKeys = _.words(API_KEYS)
+const apiKeys = _.words(API_KEYS, /[^, ]+/g)
 
 const apiKeyScheme = () => {
   return {
