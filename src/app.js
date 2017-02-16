@@ -9,7 +9,7 @@ const VERSION = process.env.VERSION
 const VERSION_COMMIT = process.env.VERSION_COMMIT
 const VERSION_BUILD_DATE = process.env.VERSION_BUILD_DATE
 
-const Logger = require('./utils/logger')
+const Logger = require('modern-logger')
 
 if (VERSION && VERSION_COMMIT && VERSION_BUILD_DATE) {
   Logger.info(`Running version ${VERSION} from commit ${VERSION_COMMIT} built on ${VERSION_BUILD_DATE}`)

@@ -13,7 +13,7 @@ const API_KEYS = process.env.API_KEYS || ''
 const _ = require('lodash')
 const Promise = require('bluebird')
 
-const Logger = require('./utils/logger')
+const Logger = require('modern-logger')
 
 const Health = require('health-checkup')
 
