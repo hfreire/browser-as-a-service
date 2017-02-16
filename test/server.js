@@ -100,9 +100,6 @@ describe('Server', () => {
       subject = require('../src/server')
     })
 
-    after(() => {
-    })
-
     it('should invoke hapi server start', () => {
       return subject.start()
         .finally(() => {
@@ -120,9 +117,6 @@ describe('Server', () => {
 
       subject = require('../src/server')
       return subject.start()
-    })
-
-    after(() => {
     })
 
     it('should invoke hapi server stop', () => {
