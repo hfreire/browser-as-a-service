@@ -62,7 +62,7 @@ class Server {
 
     this._httpServer.connection(options)
 
-    this._httpServer.on('start', () => Logger.info(`Started HTTP server on port ${PORT}`))
+    this._httpServer.on('start', () => Logger.info(`Started :rocket: HTTP server on port ${PORT}`))
     this._httpServer.on('stop', () => Logger.info('Stopped HTTP server'))
     this._httpServer.on('response', ({ info, method, url, response, headers, query }) => {
       const remoteAddress = info.remoteAddress
