@@ -21,7 +21,7 @@
     "inert": "4.1.0",
     "joi": "10.2.2",
     "lodash": "4.17.4",
-    "modern-logger": "1.1.0",
+    "modern-logger": "1.1.1",
     "nightmare": "2.9.1",
     "nightmare-iframe-manager": "0.0.4",
     "random-http-useragent": "1.0.1",
