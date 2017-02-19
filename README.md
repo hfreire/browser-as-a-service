@@ -14,6 +14,8 @@ Uses [hapi](https://github.com/hapijs/hapijs) to expose [Nightmare](https://gith
 * Quickly deploy :runner: and easily scale :two_men_holding_hands: the number of servers by using Rancher :white_check_mark:
 
 ### How to use
+
+#### Use it in your terminal
 ```
 docker run hfreire/browser-as-a-service
 ```
