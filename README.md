@@ -19,8 +19,8 @@ docker run hfreire/browser-as-a-service
 ```
 #### Available environment variables
 Variable | Description | Default value
- :---:|:---:|:---:
-`API_KEYS` | API keys used to authenticate the clients | `not used`
+:---:|:---:|:---:
+API_KEYS | API keys used to authenticate the clients | `not used`
 
 ### How to build
 Clone the GitHub repo
