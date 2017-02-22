@@ -1,6 +1,7 @@
 server:
   image: hfreire/browser-as-a-service:0.0.0
   restart: always
+
 lb:
   image: rancher/load-balancer-service
   restart: always
