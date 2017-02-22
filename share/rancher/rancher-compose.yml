@@ -2,13 +2,14 @@ server:
   scale: 3
   health_check:
     port: 3000
+    request_line: GET /ping HTTP/1.1
     interval: 20000
     initializing_timeout: 60000
-    unhealthy_threshold: 1
-    strategy: recreate
     response_timeout: 2000
-    request_line: GET /ping HTTP/1.1
     healthy_threshold: 2
+    unhealthy_threshold: 4
+    strategy: recreate
+
 lb:
   scale: 1
   load_balancer_config:
