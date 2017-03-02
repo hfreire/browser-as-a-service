@@ -33,7 +33,7 @@
     "chai-as-promised": "6.0.0",
     "coveralls": "2.11.16",
     "eslint": "3.16.1",
-    "eslint-config-standard": "6.2.1",
+    "eslint-config-standard": "7.0.0",
     "eslint-plugin-mocha": "4.8.0",
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-standard": "2.0.1",
@@ -41,8 +41,8 @@
     "mocha": "3.2.0",
     "semantic-release": "6.3.2",
     "pre-git": "3.14.0",
-    "standard": "8.6.0",
-    "testdouble": "1.11.1"
+    "standard": "9.0.0",
+    "testdouble": "1.11.2"
   },
   "config": {
     "pre-git": {

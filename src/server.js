@@ -29,7 +29,7 @@ const apiKeyScheme = () => {
     authenticate: function (request, reply) {
       const { headers, query } = request
 
-      const apiKey = headers[ 'x-api-key' ] || query && query.key
+      const apiKey = headers[ 'x-api-key' ] || (query && query.key)
       if (!apiKey) {
         return reply(Boom.unauthorized('Missing API key'))
       }
