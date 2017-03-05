@@ -13,7 +13,7 @@
   },
   "homepage": "https://github.com/hfreire/browser-as-a-service#readme",
   "dependencies": {
-    "bluebird": "3.4.7",
+    "bluebird": "3.5.0",
     "boom": "4.2.0",
     "hapi": "16.1.0",
     "hapi-swagger": "7.7.0",
