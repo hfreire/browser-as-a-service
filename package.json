@@ -42,7 +42,7 @@
     "semantic-release": "^6.3.2",
     "pre-git": "^3.14.0",
     "standard": "^9.0.0",
-    "testdouble": "^1.11.2"
+    "testdouble": "^2.0.1"
   },
   "config": {
     "pre-git": {
