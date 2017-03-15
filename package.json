@@ -13,53 +13,57 @@
   },
   "homepage": "https://github.com/hfreire/browser-as-a-service#readme",
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "boom": "^4.2.0",
-    "hapi": "^16.1.0",
-    "hapi-swagger": "^7.7.0",
-    "health-checkup": "^1.0.6",
-    "inert": "^4.1.0",
-    "joi": "^10.2.2",
-    "lodash": "^4.17.4",
-    "modern-logger": "^1.2.1",
-    "nightmare": "^2.10.0",
-    "nightmare-iframe-manager": "^0.0.4",
-    "random-http-useragent": "^1.0.1",
-    "serverful": "^1.0.1",
-    "vision": "^4.1.1"
+    "bluebird": "3.5.0",
+    "boom": "4.2.0",
+    "hapi": "16.1.0",
+    "hapi-swagger": "7.7.0",
+    "health-checkup": "1.0.6",
+    "inert": "4.1.0",
+    "joi": "10.2.2",
+    "lodash": "4.17.4",
+    "modern-logger": "1.2.1",
+    "nightmare": "2.10.0",
+    "nightmare-iframe-manager": "0.0.4",
+    "random-http-useragent": "1.0.1",
+    "serverful": "1.0.1",
+    "vision": "4.1.1"
   },
   "devDependencies": {
-    "babel-eslint": "^7.1.1",
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "coveralls": "^2.11.16",
-    "eslint": "^3.17.0",
-    "eslint-config-standard": "^7.0.0",
-    "eslint-plugin-mocha": "^4.8.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.0.1",
-    "istanbul": "^0.4.5",
-    "mocha": "^3.2.0",
-    "semantic-release": "^6.3.2",
-    "pre-git": "^3.14.0",
-    "standard": "^9.0.0",
-    "testdouble": "^1.11.2"
+    "babel-eslint": "7.1.1",
+    "chai": "3.5.0",
+    "chai-as-promised": "6.0.0",
+    "coveralls": "2.11.16",
+    "eslint": "3.17.0",
+    "eslint-config-standard": "7.0.0",
+    "eslint-plugin-mocha": "4.8.0",
+    "eslint-plugin-promise": "3.5.0",
+    "eslint-plugin-standard": "2.0.1",
+    "istanbul": "0.4.5",
+    "last-release-github": "git://github.com/hfreire/last-release-github",
+    "mocha": "3.2.0",
+    "semantic-release": "6.3.2",
+    "pre-git": "3.14.0",
+    "standard": "9.0.0",
+    "testdouble": "1.11.2"
   },
   "config": {
     "pre-git": {
       "commit-msg": "conventional"
     }
   },
+  "release": {
+    "getLastRelease": "last-release-github"
+  },
   "scripts": {
+    "commit": "./node_modules/.bin/commit-wizard",
     "clean": "rm -rf coverage",
     "lint": "node_modules/.bin/eslint .",
     "coverage": "node_modules/.bin/istanbul cover --include-all-sources --root src --print detail ./node_modules/mocha/bin/_mocha -- --recursive test",
     "test": "npm run lint && npm run coverage",
+    "semantic-release": "./node_modules/.bin/semantic-release pre && node_modules/.bin/semantic-release post",
     "build": "$(which docker) build -t hfreire/$npm_package_name:$npm_package_version --build-arg=NAME=$npm_package_name --build-arg=VERSION=`$(which git) rev-parse --abbrev-ref HEAD` --build-arg=VERSION_COMMIT=`$(which git) rev-parse --short HEAD` --build-arg=VERSION_BUILD_DATE=\"`$(which date)`\" -f ./share/docker/Dockerfile .",
     "push": "$(which docker) push hfreire/$npm_package_name:$npm_package_version",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
-    "start": "node src/app.js",
-    "semantic-release": "./node_modules/.bin/semantic-release pre && node_modules/.bin/semantic-release post",
-    "commit": "./node_modules/.bin/commit-wizard"
+    "start": "node src/app.js"
   }
 }
