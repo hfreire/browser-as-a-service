@@ -18,7 +18,7 @@ if (VERSION && VERSION_COMMIT && VERSION_BUILD_DATE) {
 const Server = require('./server')
 
 // shutdown gracefully
-function _shutdown () {
+const shutdown = () => {
   return Server.stop()
     .timeout(1000)
     .finally(() => {
@@ -26,33 +26,18 @@ function _shutdown () {
     })
 }
 
-process.on('SIGINT', _shutdown)
-process.on('SIGTERM', _shutdown)
-
-// force immediate shutdown, i.e. systemd watchdog?
-process.on('SIGABRT', function () {
-  process.exit(1)
-})
-
-process.on('SIGHUP', function () { // reload
-  _shutdown()
-})
-
-// stop and then shutdown, i.e. forever daemon
-process.once('SIGUSR2', function () {
-  Server.stop(function () {
+process.on('SIGINT', shutdown)
+process.on('SIGTERM', shutdown)
+process.on('SIGHUP', shutdown) // reload
+process.on('SIGABRT', () => process.exit(1)) // force immediate shutdown, i.e. systemd watchdog?
+process.once('SIGUSR2', () => {
+  Server.stop(() => {
     process.kill(process.pid, 'SIGUSR2')
   })
-})
-
-process.on('exit', function () {
-})
-
-process.on('uncaughtException', error => {
-  Logger.error(error, _shutdown)
-})
-process.on('unhandledRejection', error => {
-  Logger.error(error, _shutdown)
-})
+}) // stop and then shutdown, i.e. forever daemon
+process.on('SIGSEGV', () => Logger.error(new Error('segmentation fault')).then(() => process.exit(1)))
+process.on('exit', () => {})
+process.on('uncaughtException', (error) => Logger.error(error, shutdown))
+process.on('unhandledRejection', (error) => Logger.error(error, shutdown))
 
 Server.start()
