@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const Route = require('./route')
+const { Route } = require('serverful')
 
 const Joi = require('joi')
 const Boom = require('boom')
