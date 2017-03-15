@@ -7,7 +7,7 @@
 [![](https://img.shields.io/github/release/hfreire/browser-as-a-service.svg)](https://github.com/hfreire/browser-as-a-service/releases)
 [![](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Uses [hapi](https://github.com/hapijs/hapijs) to expose [Nightmare](https://github.com/segmentio/nightmare) headless browser through a REST API.
+Uses [serverful](https://github.com/hfreire/serverful) to expose [Nightmare](https://github.com/segmentio/nightmare) headless browser through a REST API.
 
 ### Features
 * Launch :rocket: inside a Docker container :whale: so you don't need to manage the dependencies :raised_hands: :white_check_mark:
@@ -20,9 +20,12 @@ Uses [hapi](https://github.com/hapijs/hapijs) to expose [Nightmare](https://gith
 docker run hfreire/browser-as-a-service
 ```
 #### Available environment variables
-Variable | Description | Default value
-:---:|:---:|:---:
-API_KEYS | API keys used to authenticate the clients | `not used`
+Variable | Description | Required | Default value
+:---:|:---:|:---:|:---:
+PORT | The port to be used by the HTTP server | false | `3000`
+API_KEYS | The secret keys that should be used when securing endpoints | false | `null`
+ENVIRONMENT | The environment the app is running on | false | `null`
+ROLLBAR_API_KEY | The server API key used to talk with Rollbar | false | `null`
 
 ### How to build
 Clone the GitHub repo
