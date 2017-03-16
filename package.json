@@ -2,12 +2,12 @@
   "name": "browser-as-a-service",
   "description": "A web browser hosted as a service, to render your JavaScript web pages as HTML",
   "version": "0.0.0",
+  "author": "Hugo Freire <hugo@exec.sh>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hfreire/browser-as-a-service.git"
   },
-  "author": "Hugo Freire <hugo@exec.sh>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/hfreire/browser-as-a-service/issues"
   },
@@ -39,7 +39,7 @@
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-standard": "2.0.1",
     "istanbul": "0.4.5",
-    "last-release-github": "git://github.com/hfreire/last-release-github",
+    "last-release-github": "1.1.1",
     "mocha": "3.2.0",
     "semantic-release": "6.3.2",
     "pre-git": "3.14.0",
@@ -61,8 +61,8 @@
     "coverage": "node_modules/.bin/istanbul cover --include-all-sources --root src --print detail ./node_modules/mocha/bin/_mocha -- --recursive test",
     "test": "npm run lint && npm run coverage",
     "semantic-release": "./node_modules/.bin/semantic-release pre && node_modules/.bin/semantic-release post",
-    "build": "$(which docker) build -t hfreire/$npm_package_name:$npm_package_version --build-arg=NAME=$npm_package_name --build-arg=VERSION=`$(which git) rev-parse --abbrev-ref HEAD` --build-arg=VERSION_COMMIT=`$(which git) rev-parse --short HEAD` --build-arg=VERSION_BUILD_DATE=\"`$(which date)`\" -f ./share/docker/Dockerfile .",
-    "push": "$(which docker) push hfreire/$npm_package_name:$npm_package_version",
+    "build": "$(which docker) build -t hfreire/$npm_package_name:$(if [ -z ${VERSION-} ]; then echo latest; else echo $VERSION; fi) --build-arg=NPM_TOKEN=${NPM_TOKEN} --build-arg=NAME=$npm_package_name --build-arg=VERSION=$(if [ -z ${VERSION-} ]; then echo latest; else echo $VERSION; fi) --build-arg=VERSION_COMMIT=`$(which git) rev-parse --short HEAD` --build-arg=VERSION_BUILD_DATE=\"`$(which date)`\" -f ./share/docker/Dockerfile .",
+    "push": "$(which docker) push hfreire/$npm_package_name:$(if [ -z ${VERSION-} ]; then echo latest; else echo $VERSION; fi)",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "start": "node src/app.js"
   }

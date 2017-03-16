@@ -13,7 +13,13 @@ notifications:
     on_failure: always
     on_pull_requests: false
 before_script:
-- npm prune
+  - npm prune
 after_success:
-- npm run coveralls
-- npm run semantic-release
+  - npm run coveralls
+  - npm run semantic-release
+  - if [ "$TRAVIS_BRANCH" == "master" ] || [ ! -z "$TRAVIS_TAG" ]; then
+      docker login --username=${DOCKER_USERNAME} --password=${DOCKER_PASSWORD};
+      export VERSION=$(if [ ! -z "$TRAVIS_TAG" ]; then echo $TRAVIS_TAG; fi);
+      npm run build;
+      npm run push;
+    fi
