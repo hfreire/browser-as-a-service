@@ -3,6 +3,7 @@ FROM node:6-slim
 MAINTAINER hugo@exec.sh
 
 # Set version information available for runtime
+ARG NPM_TOKEN
 ARG NAME
 ENV NAME $NAME
 ARG VERSION
