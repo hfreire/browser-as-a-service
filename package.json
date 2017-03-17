@@ -61,8 +61,8 @@
     "coverage": "node_modules/.bin/istanbul cover --include-all-sources --root src --print detail ./node_modules/mocha/bin/_mocha -- --recursive test",
     "test": "npm run lint && npm run coverage",
     "semantic-release": "./node_modules/.bin/semantic-release pre && node_modules/.bin/semantic-release post",
-    "build": "$(which docker) build -t hfreire/$npm_package_name:$(if [ -z ${VERSION-} ]; then echo latest; else echo $VERSION; fi) --build-arg=NPM_TOKEN=${NPM_TOKEN} --build-arg=NAME=$npm_package_name --build-arg=VERSION=$(if [ -z ${VERSION-} ]; then echo latest; else echo $VERSION; fi) --build-arg=VERSION_COMMIT=`$(which git) rev-parse --short HEAD` --build-arg=VERSION_BUILD_DATE=\"`$(which date)`\" -f ./share/docker/Dockerfile .",
-    "push": "$(which docker) push hfreire/$npm_package_name:$(if [ -z ${VERSION-} ]; then echo latest; else echo $VERSION; fi)",
+    "build": "NAME=$npm_package_name ./share/docker/hooks/build",
+    "push": "NAME=$npm_package_name ./share/docker/hooks/push",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "start": "node src/app.js"
   }

@@ -12,7 +12,7 @@ ENV VERSION_COMMIT $VERSION_COMMIT
 ARG VERSION_BUILD_DATE
 ENV VERSION_BUILD_DATE $VERSION_BUILD_DATE
 
-ENV HOME /opt/browser-as-a-service
+ENV HOME /opt/$NAME
 
 RUN apt-get update &&\
     apt-get install -y libgtk2.0-0 libgconf-2-4 \
