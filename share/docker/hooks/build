@@ -14,5 +14,5 @@ $(which docker) build -t ${IMAGE_NAME} -f Dockerfile \
 --build-arg=NAME=${NAME} \
 --build-arg=VERSION=${VERSION} \
 --build-arg=VERSION_COMMIT=${VERSION_COMMIT} \
---build-arg=VERSION_BUILD_DATE=\"${VERSION_BUILD_DATE}\" \
+--build-arg=VERSION_BUILD_DATE="${VERSION_BUILD_DATE}" \
 ../..
