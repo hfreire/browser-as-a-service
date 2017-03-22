@@ -19,7 +19,7 @@
     "hapi-swagger": "7.7.0",
     "health-checkup": "1.0.6",
     "inert": "4.1.0",
-    "joi": "10.2.2",
+    "joi": "10.3.0",
     "lodash": "4.17.4",
     "modern-logger": "1.2.1",
     "nightmare": "2.10.0",
