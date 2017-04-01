@@ -14,7 +14,7 @@ require('nightmare-iframe-manager')(Nightmare)
 
 const RandomUserAgent = require('random-http-useragent')
 
-const OPTIONS = {
+const defaultOptions = {
   show: false,
   webPreferences: {
     webSecurity: false
@@ -22,10 +22,10 @@ const OPTIONS = {
 }
 
 class Browser {
-  open (url, options, iframe) {
+  open (url, options = {}, iframe) {
     const report = {}
 
-    this.options = _.defaults(options, OPTIONS)
+    this.options = _.defaults(options, defaultOptions)
 
     return RandomUserAgent.get()
       .then((userAgent) => {
