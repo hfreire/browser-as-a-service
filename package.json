@@ -14,19 +14,12 @@
   "homepage": "https://github.com/hfreire/browser-as-a-service#readme",
   "dependencies": {
     "bluebird": "3.5.0",
-    "boom": "4.2.0",
-    "hapi": "16.1.1",
-    "hapi-swagger": "7.7.0",
-    "health-checkup": "1.0.6",
-    "inert": "4.1.0",
-    "joi": "10.3.0",
     "lodash": "4.17.4",
     "modern-logger": "1.2.2",
     "nightmare": "2.10.0",
     "nightmare-iframe-manager": "0.0.4",
     "random-http-useragent": "1.0.1",
-    "serverful": "1.0.1",
-    "vision": "4.1.1"
+    "serverful": "1.0.1"
   },
   "devDependencies": {
     "babel-eslint": "7.2.0",
