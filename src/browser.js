@@ -6,8 +6,10 @@
  */
 
 const _ = require('lodash')
+const Promise = require('bluebird')
 
 const Nightmare = require('nightmare')
+Nightmare.Promise = require(Promise)
 require('nightmare-iframe-manager')(Nightmare)
 
 const RandomUserAgent = require('random-http-useragent')
