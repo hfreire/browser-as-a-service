@@ -15,7 +15,7 @@
   "dependencies": {
     "bluebird": "3.5.0",
     "boom": "4.2.0",
-    "hapi": "16.1.0",
+    "hapi": "16.1.1",
     "hapi-swagger": "7.7.0",
     "health-checkup": "1.0.6",
     "inert": "4.1.0",
