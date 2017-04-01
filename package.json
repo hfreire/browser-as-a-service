@@ -25,7 +25,7 @@
     "nightmare": "2.10.0",
     "nightmare-iframe-manager": "0.0.4",
     "random-http-useragent": "1.0.1",
-    "serverful": "1.0.1",
+    "serverful": "1.0.6",
     "vision": "4.1.1"
   },
   "devDependencies": {
