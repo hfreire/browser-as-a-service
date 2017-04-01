@@ -6,6 +6,7 @@
  */
 
 const _ = require('lodash')
+const Promise = require('bluebird')
 
 const Nightmare = require('nightmare')
 Nightmare.Promise = require('bluebird')
