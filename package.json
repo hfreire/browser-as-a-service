@@ -18,26 +18,26 @@
     "modern-logger": "1.2.2",
     "nightmare": "2.10.0",
     "nightmare-iframe-manager": "0.0.4",
-    "random-http-useragent": "1.0.1",
+    "random-http-useragent": "1.0.2",
     "serverful": "1.0.6"
   },
   "devDependencies": {
-    "babel-eslint": "7.2.0",
+    "babel-eslint": "7.2.1",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "coveralls": "2.13.0",
-    "eslint": "3.18.0",
-    "eslint-config-standard": "7.0.2",
+    "eslint": "3.19.0",
+    "eslint-config-standard": "7.1.0",
     "eslint-plugin-mocha": "4.9.0",
     "eslint-plugin-promise": "3.5.0",
-    "eslint-plugin-standard": "2.0.1",
+    "eslint-plugin-standard": "2.1.1",
     "istanbul": "0.4.5",
     "last-release-github": "1.1.1",
     "mocha": "3.2.0",
     "semantic-release": "6.3.2",
     "pre-git": "3.14.0",
     "standard": "9.0.2",
-    "testdouble": "2.0.4"
+    "testdouble": "2.1.2"
   },
   "config": {
     "pre-git": {
