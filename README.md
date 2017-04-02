@@ -23,9 +23,9 @@ docker run hfreire/browser-as-a-service
 Variable | Description | Required | Default value
 :---:|:---:|:---:|:---:
 PORT | The port to be used by the HTTP server | false | `3000`
-API_KEYS | The secret keys that should be used when securing endpoints | false | `null`
-ENVIRONMENT | The environment the app is running on | false | `null`
-ROLLBAR_API_KEY | The server API key used to talk with Rollbar | false | `null`
+API_KEYS | The secret keys that should be used when securing endpoints | false | `undefined`
+ENVIRONMENT | The environment the app is running on | false | `undefined`
+ROLLBAR_API_KEY | The server API key used to talk with Rollbar | false | `undefined`
 
 ### How to build
 Clone the GitHub repo
