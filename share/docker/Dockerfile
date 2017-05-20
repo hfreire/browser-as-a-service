@@ -1,4 +1,4 @@
-FROM node:6-slim
+FROM node:6.10.3-slim
 
 MAINTAINER hugo@exec.sh
 
@@ -17,7 +17,7 @@ ENV HOME /opt/$NAME
 
 RUN apt-get update &&\
     apt-get install -y libgtk2.0-0 libgconf-2-4 \
-    libasound2 libxtst6 libxss1 libnss3 xvfb &&\
+    libasound2 libxtst6 libxss1 libnss3 xvfb git &&\
     apt-get clean
 
 # Create app directory
