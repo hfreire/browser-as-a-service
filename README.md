@@ -16,9 +16,11 @@ Uses [serverful](https://github.com/hfreire/serverful) to expose [Nightmare](htt
 ### How to use
 
 #### Use it in your terminal
+Run the Docker image in a container exposing port `9453`
 ```
-docker run hfreire/browser-as-a-service
+docker run -d -p "9453:3000" hfreire/browser-as-a-service
 ```
+
 #### Available environment variables
 Variable | Description | Required | Default value
 :---:|:---:|:---:|:---:
@@ -43,7 +45,7 @@ Install dependencies
 npm install
 ```
 
-Run the NPM script that will build the docker container
+Run the NPM script that will build the Docker image
 ```
 npm run build
 ```
