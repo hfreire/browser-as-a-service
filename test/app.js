@@ -7,24 +7,27 @@
 
 describe('App', () => {
   let subject // eslint-disable-line
+  let Logger
   let Server
 
-  afterEach(() => {
-    td.reset()
+  before(() => {
+    Logger = td.object([ 'info', 'error' ])
+
+    Server = td.object([ 'start', 'stop' ])
   })
+
+  afterEach(() => td.reset())
 
   describe('when running', () => {
     beforeEach(() => {
-      Server = td.replace('../src/server', td.object([ 'start', 'stop' ]))
-    })
+      td.replace('modern-logger', Logger)
 
-    afterEach(() => {
-      delete require.cache[ require.resolve('../src/app') ]
+      td.replace('../src/server', Server)
+
+      subject = require('../src/app')
     })
 
     it('should start Server', () => {
-      subject = require('../src/app')
-
       td.verify(Server.start(), { times: 1 })
     })
   })
