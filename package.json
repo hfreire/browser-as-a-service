@@ -38,7 +38,7 @@
     "semantic-release": "6.3.6",
     "pre-git": "3.14.1",
     "standard": "10.0.2",
-    "testdouble": "2.1.2"
+    "testdouble": "3.0.0"
   },
   "config": {
     "pre-git": {
