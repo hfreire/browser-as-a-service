@@ -13,6 +13,7 @@ chai.config.includeStack = true
 
 const td = require('testdouble')
 td.config({
+  ignoreWarnings: true,
   promiseConstructor: Promise
 })
 
