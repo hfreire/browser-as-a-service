@@ -20,7 +20,7 @@
     "nightmare": "2.10.0",
     "nightmare-iframe-manager": "0.0.4",
     "random-http-useragent": "1.1.0",
-    "serverful": "1.1.1"
+    "serverful": "1.1."
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
@@ -28,8 +28,10 @@
     "chai-as-promised": "7.0.0",
     "coveralls": "2.13.1",
     "eslint": "3.19.0",
-    "eslint-config-standard": "10.2.1",
+    "eslint-config-hfreire": "1.0.1",
     "eslint-plugin-mocha": "4.9.0",
+    "eslint-plugin-import": "2.3.0",
+    "eslint-plugin-node": "5.0.0",
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-standard": "3.0.1",
     "istanbul": "0.4.5",
@@ -37,7 +39,6 @@
     "mocha": "3.4.2",
     "semantic-release": "6.3.6",
     "pre-git": "3.14.1",
-    "standard": "10.0.2",
     "testdouble": "3.0.0"
   },
   "config": {
