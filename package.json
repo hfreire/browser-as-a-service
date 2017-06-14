@@ -20,7 +20,7 @@
     "nightmare": "2.10.0",
     "nightmare-iframe-manager": "0.0.4",
     "random-http-useragent": "1.1.0",
-    "serverful": "1.1."
+    "serverful": "1.1.2"
   },
   "devDependencies": {
     "babel-eslint": "7.2.3",
