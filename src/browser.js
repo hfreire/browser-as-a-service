@@ -45,11 +45,7 @@ class Browser {
             })
             .goto(url)
             .enterIFrame(iframe)
-            .evaluate(() => {
-              /* eslint-disable */
-              return document.documentElement.outerHTML
-              /* eslint-enable */
-            })
+            .evaluate(() => document.documentElement.outerHTML)
             .end()
             .then((elements) => {
               report.elements = elements
@@ -67,11 +63,7 @@ class Browser {
               report.console.push({ type, message })
             })
             .goto(url)
-            .evaluate(() => {
-              /* eslint-disable */
-              return document.documentElement.outerHTML
-              /* eslint-enable */
-            })
+            .evaluate(() => document.documentElement.outerHTML)
             .end()
             .then((elements) => {
               report.elements = elements
