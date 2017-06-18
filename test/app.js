@@ -61,13 +61,11 @@ describe('App', () => {
 
     before(() => {
       on = process.on
-
       exit = process.exit
     })
 
     beforeEach(() => {
       process.on = td.function()
-
       process.exit = td.function()
 
       td.when(process.on('SIGINT'), { ignoreExtraArgs: true }).thenDo((event, _callback) => { callback = _callback })
@@ -82,7 +80,6 @@ describe('App', () => {
 
     after(() => {
       process.on = on
-
       process.exit = exit
     })
 
@@ -108,13 +105,11 @@ describe('App', () => {
 
     before(() => {
       on = process.on
-
       exit = process.exit
     })
 
     beforeEach(() => {
       process.on = td.function()
-
       process.exit = td.function()
 
       td.when(process.on('SIGTERM'), { ignoreExtraArgs: true }).thenDo((event, _callback) => { callback = _callback })
@@ -129,7 +124,6 @@ describe('App', () => {
 
     after(() => {
       process.on = on
-
       process.exit = exit
     })
 
@@ -155,13 +149,11 @@ describe('App', () => {
 
     before(() => {
       on = process.on
-
       exit = process.exit
     })
 
     beforeEach(() => {
       process.on = td.function()
-
       process.exit = td.function()
 
       td.when(process.on('SIGHUP'), { ignoreExtraArgs: true }).thenDo((event, _callback) => { callback = _callback })
@@ -176,7 +168,6 @@ describe('App', () => {
 
     after(() => {
       process.on = on
-
       process.exit = exit
     })
 
@@ -202,13 +193,11 @@ describe('App', () => {
 
     before(() => {
       on = process.on
-
       exit = process.exit
     })
 
     beforeEach(() => {
       process.on = td.function()
-
       process.exit = td.function()
 
       td.when(process.on('SIGABRT'), { ignoreExtraArgs: true }).thenCallback()
@@ -239,13 +228,11 @@ describe('App', () => {
 
     before(() => {
       on = process.on
-
       exit = process.exit
     })
 
     beforeEach(() => {
       process.on = td.function()
-
       process.exit = td.function()
 
       td.when(process.on('uncaughtException'), { ignoreExtraArgs: true }).thenDo((event, _callback) => { callback = _callback })
@@ -261,7 +248,6 @@ describe('App', () => {
 
     after(() => {
       process.on = on
-
       process.exit = exit
     })
 
@@ -295,13 +281,11 @@ describe('App', () => {
 
     before(() => {
       on = process.on
-
       exit = process.exit
     })
 
     beforeEach(() => {
       process.on = td.function()
-
       process.exit = td.function()
 
       td.when(process.on('unhandledRejection'), { ignoreExtraArgs: true }).thenDo((event, _callback) => { callback = _callback })
@@ -317,7 +301,6 @@ describe('App', () => {
 
     after(() => {
       process.on = on
-
       process.exit = exit
     })
 
