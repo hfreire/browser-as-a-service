@@ -15,18 +15,21 @@ ENV VERSION_BUILD_DATE $VERSION_BUILD_DATE
 
 ENV HOME /opt/$NAME
 
-RUN apt-get update &&\
-    apt-get install -y libgtk2.0-0 libgconf-2-4 \
-    libasound2 libxtst6 libxss1 libnss3 xvfb git &&\
-    apt-get clean
-
 # Create app directory
 RUN mkdir -p $HOME
 WORKDIR $HOME
 
+RUN apt-get update &&\
+    apt-get install -y libgtk2.0-0 libgconf-2-4 libasound2 libxtst6 libxss1 libnss3 xvfb &&\
+    apt-get install git &&\
+    apt-get clean
+
 # Install app dependencies
 COPY package.json $HOME
 RUN npm install --production
+
+RUN apt-get remove --purge -y git &&\
+    apt-get autoremove --purge -y
 
 # Bundle app source
 COPY src $HOME/src
