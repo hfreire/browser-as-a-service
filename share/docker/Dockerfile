@@ -21,15 +21,15 @@ WORKDIR $HOME
 
 RUN apt-get update &&\
     apt-get install -y libgtk2.0-0 libgconf-2-4 libasound2 libxtst6 libxss1 libnss3 xvfb &&\
-    apt-get install git &&\
-    apt-get clean
+    apt-get install git
 
 # Install app dependencies
 COPY package.json $HOME
 RUN npm install --production
 
 RUN apt-get remove --purge -y git &&\
-    apt-get autoremove --purge -y
+    apt-get autoremove --purge -y &&\
+    apt-get clean
 
 # Bundle app source
 COPY src $HOME/src
