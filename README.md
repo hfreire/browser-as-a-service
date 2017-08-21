@@ -21,6 +21,14 @@ Run the Docker image in a container exposing port `9453`
 docker run -d -p "9453:3000" hfreire/browser-as-a-service
 ```
 
+Browse Google's website (https://www.google.com)
+```
+curl -X GET --header 'x-api-key: my-api-key' 'http://localhost:9453/open?url=https%3A%2F%2Fwww.google.com'
+```
+
+#### Available REST API endpoints
+Swagger documentation available `http://localhost:9453/docs`
+
 #### Available environment variables
 Variable | Description | Required | Default value
 :---:|:---:|:---:|:---:
