@@ -40,8 +40,13 @@
     "last-release-github": "1.1.1",
     "mocha": "3.5.3",
     "pre-git": "3.15.3",
-    "semantic-release": "8.0.1",
+    "semantic-release": "7.0.2",
     "testdouble": "3.2.6"
+  },
+  "greenkeeper": {
+    "ignore": [
+      "semantic-release"
+    ]
   },
   "config": {
     "pre-git": {
