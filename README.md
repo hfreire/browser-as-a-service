@@ -32,7 +32,7 @@ Swagger documentation available `http://localhost:9453/docs`
 #### Available environment variables
 Variable | Description | Required | Default value
 :---:|:---:|:---:|:---:
-PORT | The port to be used by the HTTP server. | false | `9453`
+PORT | The port to be used by the HTTP server. | false | `3000`
 API_KEYS | The secret keys that should be used when securing endpoints. | false | `undefined`
 SO_TIMEOUT | TCP socket connection timeout. | false | `120000`
 LOG_LEVEL | The log level verbosity. | false | `info`
