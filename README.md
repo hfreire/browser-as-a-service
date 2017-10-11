@@ -6,6 +6,8 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/hfreire/browser-as-a-service.svg)](https://greenkeeper.io/)
 [![](https://img.shields.io/github/release/hfreire/browser-as-a-service.svg)](https://github.com/hfreire/browser-as-a-service/releases)
 [![](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Docker Stars](https://img.shields.io/docker/stars/hfreire/browser-as-a-service.svg)](https://hub.docker.com/r/hfreire/browser-as-a-service/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/hfreire/browser-as-a-service.svg)](https://hub.docker.com/r/hfreire/browser-as-a-service/)
 
 Uses [serverful](https://github.com/hfreire/serverful) to expose [Nightmare](https://github.com/segmentio/nightmare) headless browser through a REST API.
 
