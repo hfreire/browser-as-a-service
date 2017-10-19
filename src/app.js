@@ -30,7 +30,7 @@ const shutdown = (exitStatus = 0) => {
 
 const logErrorAndShutdown = (error) => {
   return Logger.error(error)
-    .then(() => shutdown(1))
+    .finally(() => shutdown(1))
 }
 
 process.on('SIGINT', shutdown)
