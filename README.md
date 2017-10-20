@@ -52,11 +52,6 @@ Change current directory
 cd browser-as-a-service
 ```
 
-Install dependencies
-```
-npm install
-```
-
 Run the NPM script that will build the Docker image
 ```
 npm run build
