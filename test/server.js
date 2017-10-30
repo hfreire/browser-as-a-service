@@ -7,15 +7,24 @@
 
 describe('Server', () => {
   let subject
-  const { Serverful } = require('serverful')
+  let serverful
+
+  before(() => {
+    serverful = td.object([])
+    serverful.Serverful = td.constructor([])
+  })
+
+  after(() => td.reset())
 
   describe('when exporting', () => {
     beforeEach(() => {
+      td.replace('serverful', serverful)
+
       subject = require('../src/server')
     })
 
     it('should be instance of serverful', () => {
-      subject.should.be.instanceOf(Serverful)
+      subject.should.be.instanceOf(serverful.Serverful)
     })
   })
 })
