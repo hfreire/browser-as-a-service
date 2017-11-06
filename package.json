@@ -23,7 +23,7 @@
     "serverful": "1.1.20"
   },
   "devDependencies": {
-    "babel-eslint": "8.0.1",
+    "babel-eslint": "8.0.2",
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
     "coveralls": "2.13.3",
