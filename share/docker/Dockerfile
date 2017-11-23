@@ -32,8 +32,7 @@ COPY src $HOME/src
 
 # Remove app build dependencies
 RUN apt-get remove --purge -y git &&\
-    apt-get autoremove --purge -y &&\
-    apt-get clean
+    apt-get autoremove --purge -y
 
 COPY share/docker/start.sh /start.sh
 RUN chmod +x /start.sh
