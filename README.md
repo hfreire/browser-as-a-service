@@ -29,7 +29,7 @@ curl -X GET --header 'x-api-key: my-api-key' 'http://localhost:9453/open?url=htt
 ```
 
 #### Available REST API endpoints
-Swagger documentation available `http://localhost:9453/docs`
+Swagger documentation available at `http://localhost:9453/docs`.
 
 #### Available environment variables
 Variable | Description | Required | Default value
