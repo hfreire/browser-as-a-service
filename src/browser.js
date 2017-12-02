@@ -27,7 +27,7 @@ class Browser {
   open (url, options = {}, iframe) {
     const report = {}
 
-    this._options = _.defaultsDeep(options, defaultOptions)
+    this._options = _.defaultsDeep({}, options, defaultOptions)
 
     return RandomHttpUserAgent.get()
       .then((userAgent) => {

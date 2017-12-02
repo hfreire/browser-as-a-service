@@ -7,9 +7,19 @@
 
 describe('Open', () => {
   let subject
+  let serverful
+  let Joi
+  let Boom
   let Browser
 
   before(() => {
+    serverful = td.object([])
+    serverful.Route = td.constructor([])
+
+    Joi = td.object([ 'string', 'object' ])
+
+    Boom = td.object([ 'badImplementation' ])
+
     Browser = td.object([ 'open' ])
   })
 
@@ -21,8 +31,16 @@ describe('Open', () => {
     const request = { query }
     let reply
 
-    beforeEach(() => {
+    before(() => {
       reply = td.function()
+    })
+
+    beforeEach(() => {
+      td.replace('serverful', serverful)
+
+      td.replace('joi', Joi)
+
+      td.replace('boom', Boom)
 
       td.replace('../../src/browser', Browser)
       td.when(Browser.open(), { ignoreExtraArgs: true }).thenResolve(report)
@@ -49,8 +67,16 @@ describe('Open', () => {
     const request = { query }
     let reply
 
-    beforeEach(() => {
+    before(() => {
       reply = td.function()
+    })
+
+    beforeEach(() => {
+      td.replace('serverful', serverful)
+
+      td.replace('joi', Joi)
+
+      td.replace('boom', Boom)
 
       td.replace('../../src/browser', Browser)
       td.when(Browser.open(), { ignoreExtraArgs: true }).thenReject(error)
@@ -58,18 +84,10 @@ describe('Open', () => {
       subject = require('../../src/routes/open')
     })
 
-    it('should return 500', () => {
+    it('should call boom bad implementation', () => {
       return subject.handler(request, reply)
         .then(() => {
-          const captor = td.matchers.captor()
-
-          td.verify(reply(captor.capture()), { times: 1 })
-
-          const response = captor.value
-          response.should.be.instanceOf(Error)
-          response.isBoom.should.be.equal(true)
-          response.message.should.contain(error.message)
-          response.output.statusCode.should.be.equal(500)
+          td.verify(Boom.badImplementation(error), { times: 1 })
         })
     })
   })
