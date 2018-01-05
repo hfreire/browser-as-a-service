@@ -44,7 +44,7 @@
     "mocha": "4.1.0",
     "pre-git": "3.17.0",
     "semantic-release": "7.0.2",
-    "testdouble": "3.3.0"
+    "testdouble": "3.3.1"
   },
   "greenkeeper": {
     "ignore": [
