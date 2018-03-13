@@ -22,7 +22,7 @@
     "modern-logger": "1.5.12",
     "nightmare": "3.0.0",
     "nightmare-iframe-manager": "0.0.4",
-    "random-http-useragent": "1.1.4",
+    "random-http-useragent": "1.1.5",
     "serverful": "1.1.20"
   },
   "devDependencies": {
