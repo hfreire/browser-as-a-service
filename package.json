@@ -40,16 +40,10 @@
     "eslint-plugin-standard": "3.0.1",
     "eslint-plugin-unicorn": "3.0.1",
     "istanbul": "0.4.5",
-    "last-release-github": "1.1.1",
     "mocha": "4.0.1",
     "pre-git": "3.16.0",
-    "semantic-release": "7.0.2",
+    "semantic-release": "15.0.3",
     "testdouble": "3.3.0"
-  },
-  "greenkeeper": {
-    "ignore": [
-      "semantic-release"
-    ]
   },
   "config": {
     "pre-git": {
@@ -58,7 +52,14 @@
     }
   },
   "release": {
-    "getLastRelease": "last-release-github"
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
+      },
+      "@semantic-release/github"
+    ],
+    "analyzeCommits": "simple-commit-message"
   },
   "scripts": {
     "commit": "./node_modules/.bin/commit-wizard",
@@ -66,7 +67,7 @@
     "lint": "node_modules/.bin/eslint . --ext .json --ext .js",
     "coverage": "node_modules/.bin/istanbul cover --include-all-sources --root src --print detail ./node_modules/mocha/bin/_mocha -- --recursive test",
     "test": "npm run lint && npm run coverage",
-    "semantic-release": "./node_modules/.bin/semantic-release pre && node_modules/.bin/semantic-release post",
+    "semantic-release": "./node_modules/.bin/semantic-release",
     "build": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/hooks/build",
     "push": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/hooks/push",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
