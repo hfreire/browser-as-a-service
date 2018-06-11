@@ -1,0 +1,21 @@
+[
+  {
+    "name": "browser-as-a-service",
+    "image": "hfreire/browser-as-a-service:latest",
+    "cpu": 10,
+    "memory": 256,
+    "links": [],
+    "portMappings": [
+      {
+        "containerPort": 3000,
+        "protocol": "tcp"
+      }
+    ],
+    "essential": true,
+    "entryPoint": [],
+    "command": [],
+    "environment": [],
+    "mountPoints": [],
+    "volumesFrom": []
+  }
+]
