@@ -26,7 +26,7 @@ docker run -d -p "9453:3000" hfreire/browser-as-a-service
 ##### Browse Google's website (https://www.google.com)
 Use `curl` to fetch Google's website
 ```
-curl -X GET --header 'x-api-key: my-api-key' 'http://localhost:9453/open?url=https%3A%2F%2Fwww.google.com'
+curl 'http://localhost:9453/open?url=https%3A%2F%2Fwww.google.com'
 ```
 
 #### Available REST API endpoints
