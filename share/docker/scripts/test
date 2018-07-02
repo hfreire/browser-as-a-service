@@ -1,0 +1,15 @@
+#!/bin/bash
+
+pushd $(cd -P -- "$(dirname -- "$0")" && pwd -P)/..
+
+$(which docker-compose) -f docker-compose.test.yml build
+
+$(which docker-compose) -f docker-compose.test.yml up -d
+
+$(which docker) logs -f docker_sut_1
+
+RET=`$(which docker) wait docker_sut_1`
+
+popd
+
+exit $RET

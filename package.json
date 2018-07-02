@@ -61,15 +61,21 @@
     ]
   },
   "scripts": {
-    "commit": "./node_modules/.bin/commit-wizard",
-    "clean": "rm -rf coverage",
-    "lint": "node_modules/.bin/eslint . --ext .json --ext .js",
-    "coverage": "node_modules/.bin/istanbul cover --include-all-sources --root src --print detail ./node_modules/mocha/bin/_mocha -- --recursive test",
-    "test": "npm run lint && npm run coverage",
-    "semantic-release": "./node_modules/.bin/semantic-release",
-    "build": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/hooks/build",
-    "push": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/hooks/push",
+    "eslint": "node_modules/.bin/eslint . --ext .json --ext .js",
+    "docker:build": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/scripts/build",
+    "docker:push": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/scripts/push",
+    "docker:test": "./share/docker/scripts/test",
+    "terraform:deploy": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/terraform/scripts/deploy",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "semantic-release": "./node_modules/.bin/semantic-release",
+    "clean": "rm -rf coverage",
+    "lint": "npm run eslint",
+    "test": "npm run lint && npm run coverage",
+    "coverage": "node_modules/.bin/istanbul cover --include-all-sources --root src --print detail ./node_modules/mocha/bin/_mocha -- --recursive test",
+    "commit": "./node_modules/.bin/commit-wizard",
+    "build": "npm run docker:build",
+    "push": "npm run docker:push",
+    "deploy": "npm run terraform:deploy",
     "start": "node src/app.js"
   }
 }

@@ -3,7 +3,7 @@
 [ -z ${DOCKER_REPO-} ] && exit 1
 [ -z ${NAME-} ] && exit 1
 
-VERSION=$(if [ -z ${VERSION-} ]; then echo latest; else echo $VERSION; fi)
+VERSION=$(if [ -z ${VERSION-} ]; then echo $(if [ -z ${DOCKER_TAG-} ]; then echo latest; else echo $DOCKER_TAG; fi); else echo $VERSION; fi)
 
 IMAGE_NAME=$(if [ -z ${IMAGE_NAME-} ]; then echo $DOCKER_REPO/$NAME:$VERSION; else echo $IMAGE_NAME; fi)
 

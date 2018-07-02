@@ -10,17 +10,21 @@
 
 ### Features
 * Launch :rocket: inside a Docker container :whale: so you don't need to manage the dependencies :raised_hands: :white_check_mark:
-* Quickly deploy :runner: and easily scale :two_men_holding_hands: the number of servers by using Rancher :white_check_mark:
+* Deploy on [AWS](https://aws.amazon.com) using an [Antifragile Infrastructure](https://github.com/antifragile-systems/antifragile-infrastructure) that allows you to easily monitor activity and scale :chart_with_upwards_trend: capacity :white_check_mark:
 
 ### How to use
 
 #### Use it in your terminal
-Run the Docker image in a container exposing port `9453`
+Using it in your terminal requires [Docker](https://www.docker.com) installed in your system.
+
+##### Run the Docker image in a container 
+Detach from the container and expose port `9453`.
 ```
 docker run -d -p "9453:3000" hfreire/browser-as-a-service
 ```
 
-Browse Google's website (https://www.google.com)
+##### Browse Google's website (https://www.google.com)
+Use `curl` to fetch Google's website
 ```
 curl -X GET --header 'x-api-key: my-api-key' 'http://localhost:9453/open?url=https%3A%2F%2Fwww.google.com'
 ```
@@ -28,7 +32,7 @@ curl -X GET --header 'x-api-key: my-api-key' 'http://localhost:9453/open?url=htt
 #### Available REST API endpoints
 Swagger documentation available at `http://localhost:9453/docs`.
 
-#### Available environment variables
+#### Available usage environment variables
 Variable | Description | Required | Default value
 :---:|:---:|:---:|:---:
 PORT | The port to be used by the HTTP server. | false | `3000`
@@ -39,20 +43,49 @@ ENVIRONMENT | The environment the app is running on. | false | `undefined`
 ROLLBAR_API_KEY | The server API key used to talk with Rollbar. | false | `undefined`
 
 ### How to build
-Clone the GitHub repo
+##### Clone the GitHub repo
 ```
 git clone https://github.com/hfreire/browser-as-a-service.git
 ```
 
-Change current directory
+##### Change current directory
 ```
 cd browser-as-a-service
 ```
 
-Run the NPM script that will build the Docker image
+##### Run the NPM script that will build the Docker image
 ```
 npm run build
 ```
+
+### How to deploy
+
+#### Deploy it from your terminal
+Deploying it from your terminal requires [terraform](https://www.terraform.io) installed on your system and an [antifragile infrastructure](https://github.com/antifragile-systems/antifragile-infrastructure) setup available in your [AWS](https://aws.amazon.com) account.
+
+##### Clone the GitHub repo
+```
+git clone https://github.com/hfreire/browser-as-a-service.git
+```
+
+##### Change current directory
+```
+cd browser-as-a-service
+```
+
+##### Run the NPM script that will deploy all functions
+```
+npm run deploy
+```
+
+#### Available deployment environment variables
+Variable | Description | Required | Default value
+:---:|:---:|:---:|:---:
+VERSION | The version of the app. | false | `latest`
+ANTIFRAGILE_STATE_AWS_REGION | The AWS region used for the antifragile state . | false | `undefined`
+ANTIFRAGILE_STATE_AWS_S3_BUCKET | The AWS S3 bucket used for the antifragile state. | false | `undefined`
+ANTIFRAGILE_STATE_AWS_DYNAMODB_TABLE | The AWS DynamoDB table used for the antifragile state. | false | `undefined`
+ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME | The domain used for the antifragile infrastructure. | true | `undefined`
 
 ### How to contribute
 You can contribute either with code (e.g., new features, bug fixes and documentation) or by [donating 5 EUR](https://paypal.me/hfreire/5). You can read the [contributing guidelines](CONTRIBUTING.md) for instructions on how to contribute with code. 

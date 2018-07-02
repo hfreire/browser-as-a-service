@@ -1,0 +1,36 @@
+#!/bin/bash
+
+[ -z ${DOCKER_REPO-} ] && exit 1
+[ -z ${NAME-} ] && exit 1
+[ -z ${ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME-} ] && exit 1
+
+VERSION=$(if [ -z ${VERSION-} ]; then echo $(if [ -z ${DOCKER_TAG-} ]; then echo latest; else echo $DOCKER_TAG; fi); else echo $VERSION; fi)
+
+pushd $(cd -P -- "$(dirname -- "$0")" && pwd -P)/..
+
+[ -z ${ANTIFRAGILE_STATE_AWS_REGION-} ] || [ -z ${ANTIFRAGILE_STATE_AWS_S3_BUCKET-} ] || [ -z ${ANTIFRAGILE_STATE_AWS_DYNAMODB_TABLE-} ] || \
+$(which terraform) init \
+-force-copy \
+-backend-config="region=${ANTIFRAGILE_STATE_AWS_REGION}" \
+-backend-config="bucket=${ANTIFRAGILE_STATE_AWS_S3_BUCKET}" \
+-backend-config="key=${NAME}.tfstate" \
+-backend-config="encrypt=true" \
+-backend-config="dynamodb_table=${ANTIFRAGILE_STATE_AWS_DYNAMODB_TABLE}" || exit 1
+
+$(which terraform) get -update=true || exit 1
+
+$(which terraform) taint -module=${NAME}.cluster aws_ecs_task_definition.antifragile-service
+
+$(which terraform) plan \
+-var "version=${VERSION}" \
+-var "docker_repo=${DOCKER_REPO}" \
+-var "domain_name=${ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME}" || exit 1
+
+$(which terraform) apply -auto-approve \
+-var "version=${VERSION}" \
+-var "docker_repo=${DOCKER_REPO}" \
+-var "domain_name=${ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME}" || exit 1
+
+popd
+
+exit 0

@@ -1,6 +1,13 @@
+sudo: required
 language: node_js
+env:
+  global:
+    - VERSION=$TRAVIS_TAG
+    - VERSION_COMMIT=$TRAVIS_COMMIT
+services:
+  - docker
 node_js:
-- 8.9.0
+  - 8.9.0
 cache:
   directories:
   - node_modules
@@ -12,15 +19,29 @@ notifications:
     on_success: never
     on_failure: always
     on_pull_requests: false
-install:
-  - npm install
 before_install:
   - npm install -g greenkeeper-lockfile@1
+install:
+  - npm install
+  - |
+    curl -fSL "https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip" -o terraform.zip && \
+    sudo unzip -d /usr/local/bin/ terraform.zip
 before_script:
   - npm prune
   - greenkeeper-lockfile-update
+script:
+  - |
+    npm test && \
+    npm run build && \
+    npm run docker:test
 after_success:
   - npm run coveralls
   - npm run semantic-release
+  - |
+    ([ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] || [ -n "$TRAVIS_TAG" ]) && \
+    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin && \
+    npm run push
+  - |
+    [ -n "$TRAVIS_TAG" ] && npm run deploy
 after_script:
   - greenkeeper-lockfile-upload

@@ -1,9 +1,9 @@
 [
   {
-    "name": "browser-as-a-service",
-    "image": "hfreire/browser-as-a-service:latest",
+    "name": "${name}",
+    "image": "${image}",
     "cpu": 10,
-    "memory": 256,
+    "memory": 128,
     "links": [],
     "portMappings": [
       {
@@ -14,8 +14,21 @@
     "essential": true,
     "entryPoint": [],
     "command": [],
-    "environment": [],
+    "environment": [
+      {
+        "name": "API_KEYS",
+        "value": "$${api_keys}"
+      }
+    ],
     "mountPoints": [],
-    "volumesFrom": []
+    "volumesFrom": [],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "$${awslogs-group}",
+        "awslogs-region": "$${awslogs-region}",
+        "awslogs-stream-prefix": "$${awslogs-stream-prefix}"
+      }
+    }
   }
 ]
