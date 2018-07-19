@@ -38,6 +38,9 @@ Variable | Description | Required | Default value
 PORT | The port to be used by the HTTP server. | false | `3000`
 API_KEYS | The secret keys that should be used when securing endpoints. | false | `undefined`
 SO_TIMEOUT | TCP socket connection timeout. | false | `120000`
+BASE_PATH | Base path to be prefixed to all available endpoint paths. | false | `/`
+PING_PATH | Endpoint path for pinging app. | false | `/ping`
+HEALTHCHECK_PATH | Endpoint for checking app health. | false | `/healthcheck`
 LOG_LEVEL | The log level verbosity. | false | `info`
 ENVIRONMENT | The environment the app is running on. | false | `undefined`
 ROLLBAR_API_KEY | The server API key used to talk with Rollbar. | false | `undefined`

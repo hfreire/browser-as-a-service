@@ -18,6 +18,10 @@
       {
         "name": "API_KEYS",
         "value": "$${api_keys}"
+      },
+      {
+        "name": "BASE_PATH",
+        "value": "/${name}"
       }
     ],
     "mountPoints": [],
