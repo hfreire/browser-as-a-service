@@ -5,6 +5,7 @@
 [ -z ${ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME-} ] && exit 1
 
 VERSION=$(if [ -z ${VERSION-} ]; then echo $(if [ -z ${DOCKER_TAG-} ]; then echo latest; else echo $DOCKER_TAG; fi); else echo $VERSION; fi)
+API_KEYS=$(if [ -z ${API_KEYS-} ]; then echo "[]"; else echo -n "[" $(IFS=',' read -ra keys <<< "$API_KEYS"; for key in ${keys[@]}; do echo -n "\"$key\","; done); echo -n "]"; fi)
 
 pushd $(cd -P -- "$(dirname -- "$0")" && pwd -P)/..
 
@@ -24,12 +25,14 @@ $(which terraform) taint -module=${NAME}.cluster aws_ecs_task_definition.antifra
 $(which terraform) plan \
 -var "version=${VERSION}" \
 -var "docker_repo=${DOCKER_REPO}" \
--var "domain_name=${ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME}" || exit 1
+-var "domain_name=${ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME}" \
+-var "api_keys=${API_KEYS}" || exit 1
 
 $(which terraform) apply -auto-approve \
 -var "version=${VERSION}" \
 -var "docker_repo=${DOCKER_REPO}" \
--var "domain_name=${ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME}" || exit 1
+-var "domain_name=${ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME}" \
+-var "api_keys=${API_KEYS}" || exit 1
 
 popd
 
