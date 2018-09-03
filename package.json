@@ -19,7 +19,7 @@
     "bluebird": "3.5.2",
     "health-checkup": "1.0.19",
     "lodash": "4.17.9",
-    "modern-logger": "1.5.23",
+    "modern-logger": "1.5.24",
     "nightmare": "3.0.1",
     "nightmare-iframe-manager": "0.0.4",
     "random-http-useragent": "1.1.5",
