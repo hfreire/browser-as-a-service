@@ -18,7 +18,7 @@
   "dependencies": {
     "bluebird": "3.5.2",
     "health-checkup": "1.0.20",
-    "lodash": "4.17.9",
+    "lodash": "4.17.11",
     "modern-logger": "1.5.25",
     "nightmare": "3.0.1",
     "nightmare-iframe-manager": "0.0.4",
