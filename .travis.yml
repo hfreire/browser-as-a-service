@@ -4,6 +4,7 @@ env:
   global:
     - VERSION=$TRAVIS_TAG
     - VERSION_COMMIT=$TRAVIS_COMMIT
+    - TERRAFORM_SHA256=6b8ce67647a59b2a3f70199c304abca0ddec0e49fd060944c26f666298e23418
 services:
   - docker
 node_js:
@@ -25,6 +26,7 @@ install:
   - npm install
   - |
     curl -fSL "https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip" -o terraform.zip && \
+    echo "$TERRAFORM_SHA256 terraform.zip" | sha256sum -c - && \
     sudo unzip -d /usr/local/bin/ terraform.zip
 before_script:
   - npm prune
