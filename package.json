@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/hfreire/browser-as-a-service#readme",
   "dependencies": {
-    "bluebird": "3.5.2",
+    "bluebird": "3.5.3",
     "health-checkup": "1.0.20",
     "lodash": "4.17.11",
     "modern-logger": "1.5.28",
