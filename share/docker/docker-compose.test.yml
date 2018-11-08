@@ -5,4 +5,4 @@ services:
     build:
       context: ../../
       dockerfile: share/docker/Dockerfile
-    entrypoint: /test.sh
+    entrypoint: ./test.sh

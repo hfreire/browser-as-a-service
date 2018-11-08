@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 [ -z ${DOCKER_REPO-} ] && exit 1
 [ -z ${NAME-} ] && exit 1
@@ -11,7 +11,7 @@ IMAGE_NAME=$(if [ -z ${IMAGE_NAME-} ]; then echo $DOCKER_REPO/$NAME:$VERSION; el
 
 pushd $(cd -P -- "$(dirname -- "$0")" && pwd -P)/..
 
-$(which docker) build -t ${IMAGE_NAME} -f Dockerfile \
+docker build -t ${IMAGE_NAME} -f Dockerfile \
 --build-arg=NPM_TOKEN=${NPM_TOKEN} \
 --build-arg=NAME=${NAME} \
 --build-arg=VERSION=${VERSION} \
