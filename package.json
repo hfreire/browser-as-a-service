@@ -3,7 +3,7 @@
   "description": "A web browser hosted as a service, to render your JavaScript web pages as HTML",
   "version": "0.0.0",
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">= 10.11"
   },
   "author": "Hugo Freire <hugo@exec.sh>",
   "license": "MIT",
@@ -16,39 +16,50 @@
   },
   "homepage": "https://github.com/hfreire/browser-as-a-service#readme",
   "dependencies": {
-    "bluebird": "3.5.2",
-    "health-checkup": "1.0.20",
+    "health-checkup": "1.0.21",
     "lodash": "4.17.11",
-    "modern-logger": "1.5.27",
-    "nightmare": "3.0.1",
-    "nightmare-iframe-manager": "0.0.4",
+    "modern-logger": "1.5.29",
+    "puppeteer": "1.10.0",
     "random-http-useragent": "1.1.5",
-    "serverful": "1.4.0"
+    "serverful": "1.4.20"
   },
   "devDependencies": {
-    "chai": "4.1.2",
-    "chai-as-promised": "7.1.1",
     "coveralls": "2.13.3",
     "eslint": "5.0.1",
-    "eslint-config-hfreire": "1.1.0",
+    "eslint-config-hfreire": "1.1.3",
     "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-jest": "22.0.0",
     "eslint-plugin-json": "1.2.1",
     "eslint-plugin-mocha": "5.2.0",
-    "eslint-plugin-node": "7.0.1",
+    "eslint-plugin-node": "8.0.0",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-standard": "4.0.0",
-    "eslint-plugin-unicorn": "6.0.0",
-    "istanbul": "0.4.5",
-    "mocha": "5.2.0",
-    "semantic-release": "15.9.17",
+    "eslint-plugin-unicorn": "6.0.1",
+    "jest": "22.4.2",
+    "npm-merge-driver": "2.3.5",
     "pre-git": "3.17.1",
-    "testdouble": "3.8.2"
+    "semantic-release": "15.11.0"
   },
   "config": {
     "pre-git": {
       "commit-msg": "conventional",
       "allow-untracked-files": true
     }
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupTestFrameworkScriptFile": "./test/helper.js",
+    "testMatch": [
+      "<rootDir>/test/**.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "./test/helper.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   },
   "release": {
     "publish": [
@@ -61,7 +72,8 @@
     "analyzeCommits": "simple-commit-message"
   },
   "scripts": {
-    "eslint": "node_modules/.bin/eslint . --ext .json --ext .js",
+    "eslint": "./node_modules/.bin/eslint --ext .json --ext .js .",
+    "jest": "./node_modules/.bin/jest",
     "docker:build": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/scripts/build",
     "docker:push": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/scripts/push",
     "docker:test": "./share/docker/scripts/test",
@@ -70,8 +82,7 @@
     "semantic-release": "./node_modules/.bin/semantic-release",
     "clean": "rm -rf coverage",
     "lint": "npm run eslint",
-    "test": "npm run lint && npm run coverage",
-    "coverage": "node_modules/.bin/istanbul cover --include-all-sources --root src --print detail ./node_modules/mocha/bin/_mocha -- --recursive test",
+    "test": "npm run clean && npm run lint && npm run jest",
     "commit": "./node_modules/.bin/commit-wizard",
     "build": "npm run docker:build",
     "push": "npm run docker:push",

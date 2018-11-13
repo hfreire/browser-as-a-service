@@ -1,77 +1,68 @@
 /*
- * Copyright (c) 2017, Hugo Freire <hugo@exec.sh>.
+ * Copyright (c) 2018, Hugo Freire <hugo@exec.sh>.
  *
  * This source code is licensed under the license found in the
  * LICENSE.md file in the root directory of this source tree.
  */
 
-const _ = require('lodash')
-const Promise = require('bluebird')
+/* eslint-disable no-undef */
 
-const Nightmare = require('nightmare')
-Nightmare.Promise = Promise
-require('nightmare-iframe-manager')(Nightmare)
+const PUPPETEER_EXECUTABLE_PATH = process.env.PUPPETEER_EXECUTABLE_PATH
+
+const _ = require('lodash')
 
 const RandomHttpUserAgent = require('random-http-useragent')
 
+const puppeteer = require('puppeteer')
+
 const defaultOptions = {
-  nightmare: {
-    show: false,
-    webPreferences: {
-      webSecurity: false
-    }
-  }
+  puppeteer: {
+    executablePath: PUPPETEER_EXECUTABLE_PATH,
+    args: [
+      '--no-sandbox',
+      '--disable-dev-shm-usage'
+    ]
+  },
+  'random-http-useragent': {}
 }
 
 class Browser {
-  open (url, options = {}, iframe) {
-    const report = {}
+  constructor () {
+    this._options = _.defaultsDeep({}, defaultOptions)
 
-    this._options = _.defaultsDeep({}, options, defaultOptions)
+    RandomHttpUserAgent.configure(_.get(this._options, 'random-http-useragent'))
+  }
 
-    return RandomHttpUserAgent.get()
-      .then((userAgent) => {
-        const nightmare = Nightmare(this._options.nightmare)
+  async open (url) {
+    if (!url) {
+      throw new Error('invalid arguments')
+    }
 
-        if (iframe) {
-          return nightmare
-            .useragent(userAgent)
-            .on('console', (type, message) => {
-              if (!report.console) {
-                report.console = []
-              }
+    const result = {}
 
-              report.console.push({ type, message })
-            })
-            .goto(url)
-            .enterIFrame(iframe)
-            .evaluate(() => document.documentElement.outerHTML)
-            .end()
-            .then((elements) => {
-              report.elements = elements
+    const userAgent = await RandomHttpUserAgent.get()
 
-              return report
-            })
-        } else {
-          return nightmare
-            .useragent(userAgent)
-            .on('console', (type, message) => {
-              if (!report.console) {
-                report.console = []
-              }
+    const browser = await puppeteer.launch(_.get(this._options, 'puppeteer'))
 
-              report.console.push({ type, message })
-            })
-            .goto(url)
-            .evaluate(() => document.documentElement.outerHTML)
-            .end()
-            .then((elements) => {
-              report.elements = elements
+    const page = await browser.newPage()
+    await page.setUserAgent(userAgent)
 
-              return report
-            })
-        }
-      })
+    page.on('console', (consoleMessage) => {
+      if (!result.console) {
+        result.console = []
+      }
+
+      result.console.push({ type: consoleMessage.type(), text: consoleMessage.text() })
+    })
+    await page.goto(url)
+
+    result.elements = await page.evaluate(() => {
+      return new XMLSerializer().serializeToString(document.doctype) + document.documentElement.outerHTML
+    })
+
+    await browser.close()
+
+    return result
   }
 }
 

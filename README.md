@@ -6,7 +6,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/hfreire/browser-as-a-service.svg)](https://hub.docker.com/r/hfreire/browser-as-a-service/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/hfreire/browser-as-a-service.svg)](https://hub.docker.com/r/hfreire/browser-as-a-service/)
 
-> Uses [serverful](https://github.com/hfreire/serverful) to expose [Nightmare](https://github.com/segmentio/nightmare) headless browser through a REST API.
+> Uses [serverful](https://github.com/hfreire/serverful) to expose [puppeteer](https://github.com/GoogleChrome/puppeteer) headless browser through a REST API.
 
 ### Features
 * Launch :rocket: inside a Docker container :whale: so you don't need to manage the dependencies :raised_hands: :white_check_mark:

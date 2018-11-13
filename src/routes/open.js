@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Hugo Freire <hugo@exec.sh>.
+ * Copyright (c) 2018, Hugo Freire <hugo@exec.sh>.
  *
  * This source code is licensed under the license found in the
  * LICENSE.md file in the root directory of this source tree.
@@ -8,7 +8,6 @@
 const { Route } = require('serverful')
 
 const Joi = require('joi')
-const Boom = require('boom')
 
 const Browser = require('../browser')
 
@@ -17,12 +16,10 @@ class Open extends Route {
     super('GET', '/open', 'Opens web page in headless browser', 'Returns opened web page')
   }
 
-  handler ({ query }, reply) {
-    const { url, iframe } = query
+  async handler ({ query }, h) {
+    const { url } = query
 
-    return Browser.open(url, {}, iframe)
-      .then((report) => reply(null, report))
-      .catch((error) => reply(Boom.badImplementation(error)))
+    return Browser.open(url)
   }
 
   validate () {
@@ -33,10 +30,7 @@ class Open extends Route {
           .description('the access API key'),
         url: Joi.string()
           .required()
-          .description('the web page URL to open'),
-        iframe: Joi.string()
-          .optional()
-          .description('the IFrame selector')
+          .description('the web page URL to open')
       },
       headers: Joi.object({
         'x-api-key': Joi.string()

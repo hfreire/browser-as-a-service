@@ -1,8 +1,8 @@
+.idea
 coverage
 node_modules
-.idea
-*.iml
 tmp
+*.iml
 
 .terraform*
 terraform.*

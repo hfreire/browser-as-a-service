@@ -1,10 +1,10 @@
 #!/bin/sh
 
-/start.sh >/dev/null 2>&1 &
+./start.sh >/dev/null 2>&1 &
 
 sleep 10
 
-$(which curl) \
+curl \
 --silent \
 --fail \
 --connect-timeout 5 \

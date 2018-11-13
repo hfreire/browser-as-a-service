@@ -1,4 +1,5 @@
 .idea
-node_modules
 coverage
+node_modules
 share
+package*.json
