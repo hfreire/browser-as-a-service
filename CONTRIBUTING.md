@@ -11,7 +11,7 @@ git clone https://github.com/my-github-username/browser-as-a-service
 
 Change current directory
 ```
-cd get-me-date
+cd browser-as-a-service
 ```
 
 Install NPM dependencies
