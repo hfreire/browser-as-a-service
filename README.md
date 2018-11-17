@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/hfreire/browser-as-a-service.svg?branch=master)](https://travis-ci.org/hfreire/browser-as-a-service)
 [![Coverage Status](https://coveralls.io/repos/github/hfreire/browser-as-a-service/badge.svg?branch=master)](https://coveralls.io/github/hfreire/browser-as-a-service?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/hfreire/watch-rtp-play/badge.svg)](https://snyk.io/test/github/hfreire/watch-rtp-play)
 [![](https://img.shields.io/github/release/hfreire/browser-as-a-service.svg)](https://github.com/hfreire/browser-as-a-service/releases)
 [![Docker Stars](https://img.shields.io/docker/stars/hfreire/browser-as-a-service.svg)](https://hub.docker.com/r/hfreire/browser-as-a-service/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/hfreire/browser-as-a-service.svg)](https://hub.docker.com/r/hfreire/browser-as-a-service/)
