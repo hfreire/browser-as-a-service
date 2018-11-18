@@ -70,8 +70,7 @@
         "npmPublish": false
       },
       "@semantic-release/github"
-    ],
-    "analyzeCommits": "simple-commit-message"
+    ]
   },
   "scripts": {
     "eslint": "./node_modules/.bin/eslint --ext .json --ext .js .",
