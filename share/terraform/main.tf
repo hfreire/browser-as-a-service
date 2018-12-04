@@ -5,7 +5,12 @@ terraform {
 }
 
 provider "aws" {
-  region = "${var.aws_region}"
+  region  = "${var.aws_region}"
+  version = "1.50"
+}
+
+provider "template" {
+  version = "1.0.0"
 }
 
 data "template_file" "container_definitions" {

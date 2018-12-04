@@ -10,8 +10,7 @@ API_KEYS=$(if [ -z ${API_KEYS-} ]; then echo "[]"; else echo -n "[" $(IFS=',' re
 pushd $(cd -P -- "$(dirname -- "$0")" && pwd -P)/..
 
 [ -z ${ANTIFRAGILE_STATE_AWS_REGION-} ] || [ -z ${ANTIFRAGILE_STATE_AWS_S3_BUCKET-} ] || [ -z ${ANTIFRAGILE_STATE_AWS_DYNAMODB_TABLE-} ] || \
-terraform init \
--force-copy \
+terraform init -upgrade \
 -backend-config="region=${ANTIFRAGILE_STATE_AWS_REGION}" \
 -backend-config="bucket=${ANTIFRAGILE_STATE_AWS_S3_BUCKET}" \
 -backend-config="key=${NAME}.tfstate" \
@@ -20,7 +19,7 @@ terraform init \
 
 terraform get -update=true || exit 1
 
-terraform taint -module=${NAME}.cluster aws_ecs_task_definition.antifragile-service
+terraform taint -module=${NAME}.cluster.services.tasks aws_ecs_task_definition.antifragile-service
 
 terraform plan \
 -var "version=${VERSION}" \
