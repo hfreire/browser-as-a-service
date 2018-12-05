@@ -18,18 +18,18 @@
   "dependencies": {
     "health-checkup": "1.0.21",
     "lodash": "4.17.11",
-    "modern-logger": "1.5.29",
-    "puppeteer": "1.10.0",
+    "modern-logger": "1.5.30",
+    "puppeteer": "1.11.0",
     "random-http-useragent": "1.1.5",
-    "serverful": "1.4.21"
+    "serverful": "1.4.29"
   },
   "devDependencies": {
     "coveralls": "3.0.2",
     "eslint": "5.9.0",
     "eslint-config-hfreire": "2.0.1",
     "eslint-plugin-import": "2.13.0",
-    "eslint-plugin-jest": "22.0.0",
-    "eslint-plugin-json": "1.2.1",
+    "eslint-plugin-jest": "22.1.2",
+    "eslint-plugin-json": "1.3.0",
     "eslint-plugin-mocha": "5.2.0",
     "eslint-plugin-node": "8.0.0",
     "eslint-plugin-promise": "4.0.1",
@@ -38,8 +38,8 @@
     "jest": "22.4.2",
     "npm-merge-driver": "2.3.5",
     "pre-git": "3.17.1",
-    "semantic-release": "15.12.0",
-    "snyk": "1.108.3"
+    "semantic-release": "15.12.4",
+    "snyk": "1.114.0"
   },
   "config": {
     "pre-git": {
