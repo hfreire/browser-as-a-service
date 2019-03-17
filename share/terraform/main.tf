@@ -23,14 +23,16 @@ data "template_file" "container_definitions" {
 }
 
 module "browser-as-a-service" {
-  source                = "github.com/antifragile-systems/antifragile-service"
+  source = "github.com/antifragile-systems/antifragile-service"
 
   name                  = "${var.name}"
   domain_name           = "${var.domain_name}"
   container_definitions = "${data.template_file.container_definitions.rendered}"
-  api_keys              = "${var.api_keys}"
-  api_quota_limit       = 1000
-  api_quota_offset      = 0
-  api_quota_period      = "DAY"
-  aws_region            = "${var.aws_region}"
+
+  api_enabled      = 1
+  api_keys         = "${var.api_keys}"
+  api_quota_limit  = 1000
+  api_quota_offset = 0
+  api_quota_period = "DAY"
+  aws_region       = "${var.aws_region}"
 }
