@@ -21,7 +21,7 @@
     "modern-logger": "1.5.32",
     "puppeteer": "1.17.0",
     "random-http-useragent": "1.1.5",
-    "serverful": "1.4.33"
+    "serverful": "1.4.41"
   },
   "devDependencies": {
     "coveralls": "3.0.3",
