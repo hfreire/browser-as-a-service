@@ -26,7 +26,7 @@
   "devDependencies": {
     "coveralls": "3.0.3",
     "eslint": "5.16.0",
-    "eslint-config-hfreire": "2.0.1",
+    "eslint-config-hfreire": "2.0.2",
     "eslint-plugin-import": "2.17.3",
     "eslint-plugin-jest": "22.6.4",
     "eslint-plugin-json": "1.4.0",
