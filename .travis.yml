@@ -17,6 +17,7 @@ notifications:
     rooms:
       secure: a0k0AogBhCNYGkGlgnmZ3IXtm+V/bgHfbpmqZIbj1QcHe/5QXVRV+64W5x5crvw/UHndbiOBe5f012tChEkf0iD/dT2R3BTiiWmPNq2mDtAXZlf+aL5H61VbcxsfLHuIdNB/EnLwLsPbJg0NJnBocT4+dGUZY40fHS/QyLjJThChqSMRxsu9SLz0fyUHozUQnoIY/3pnbTBzidOaLakbKqQ14xWTuj6hQL3eu5kqPVk5mVYnQGoF/Nx6OqhCFdkSKAjqGod2D307AGQ6hF1jp7riX5T6lw96zXgW/IQ5dKwvz5QrlUSjvaCJEq9o+PpVRPQqC0bDdQjWGKp0Eehv24NrIiQmTzrQxQMvCbTgodbc0XpFyderic7YshdPPSvk3HqTK8KLf1usYL2e+RD9YMS8j6rTWSPLaNhpQfdROGqTkQBV1SmHBcFCQ5fAJBLbw/6cTpI2XRo6+UCz/8ONlDl+d/2TORIpIGTcQv8R2AYgjG2+cmSBlqO3pkGOsT/FXg3h1BBNgsepDPqloAeT2EcvkVpA/+eWY97saYQNT34w+8g89ba128PvbeWrQMkxeqKlmZ5C5FeuljdIsBYdQBlGjlTZdCEr/L891Hj5W/eVnCXsiWF+XTtUrdJVPyJBeYRw6Fd4foZXweLHJRXUB3kvSvwoux8aGBGwtDE8Tpk=
     on_pull_requests: false
+    on_failure: never
 before_install:
 - npm install -g greenkeeper-lockfile@1
 install:
