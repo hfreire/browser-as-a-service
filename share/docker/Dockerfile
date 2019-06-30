@@ -14,7 +14,7 @@ ARG VERSION_BUILD_DATE
 ENV VERSION_BUILD_DATE $VERSION_BUILD_DATE
 
 # Create app directory
-RUN mkdir -p /home/node/$NAME \
+RUN mkdir /home/node/$NAME \
   && chown node:node /home/node/$NAME
 WORKDIR /home/node/$NAME
 
