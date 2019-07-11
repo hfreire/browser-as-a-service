@@ -20,7 +20,7 @@
     "lodash": "4.17.14",
     "modern-logger": "1.5.40",
     "puppeteer": "1.18.1",
-    "random-http-useragent": "1.1.14",
+    "random-http-useragent": "1.1.15",
     "serverful": "1.4.45"
   },
   "devDependencies": {
