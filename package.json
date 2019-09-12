@@ -18,7 +18,7 @@
   "dependencies": {
     "health-checkup": "1.0.32",
     "lodash": "4.17.15",
-    "modern-logger": "1.5.50",
+    "modern-logger": "1.5.51",
     "puppeteer": "1.19.0",
     "random-http-useragent": "1.1.18",
     "serverful": "1.4.49"
