@@ -24,7 +24,7 @@
     "serverful": "1.4.49"
   },
   "devDependencies": {
-    "coveralls": "3.0.6",
+    "coveralls": "3.0.7",
     "eslint": "6.5.1",
     "eslint-config-hfreire": "2.0.4",
     "eslint-plugin-import": "2.18.2",
