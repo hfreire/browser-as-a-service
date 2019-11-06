@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+TF_IN_AUTOMATION=true
+TF_PLAN=terraform.tfplan
+
+PROGNAME=$(basename $0)
+
+pushd $(cd -P -- "$(dirname -- "$0")" && pwd -P)/..
+
+function clean_before_exit {
+  [ -f ${TF_PLAN} ] && rm -f $TF_PLAN
+
+  popd
+}
+
+function error_and_exit {
+	echo "${PROGNAME}: ${1:-"Unknown error"}" 1>&2
+
+	exit 1
+}
+
+trap 'error_and_exit "${LINENO}: Unknown error"' ERR
+trap clean_before_exit EXIT
+
+[ -z ${NAME-} ] && error_and_exit "$LINENO: environment variable NAME is not set."
+
+TF_TARGET=${TF_TARGET:-module.service}
+TF_PLAN_OPTS=${TF_PLAN_OPTS:-"-target=${TF_TARGET}"}
+
+[ -f env.sh ] && { set -a; . env.sh; set +a; }
+
+[ -z ${ANTIFRAGILE_STATE_AWS_REGION-} ] || [ -z ${ANTIFRAGILE_STATE_AWS_S3_BUCKET-} ] || [ -z ${ANTIFRAGILE_STATE_AWS_DYNAMODB_TABLE-} ] || \
+terraform init -upgrade \
+-backend-config="region=$ANTIFRAGILE_STATE_AWS_REGION" \
+-backend-config="bucket=$ANTIFRAGILE_STATE_AWS_S3_BUCKET" \
+-backend-config="key=$NAME.tfstate" \
+-backend-config="encrypt=true" \
+-backend-config="dynamodb_table=$ANTIFRAGILE_STATE_AWS_DYNAMODB_TABLE" || error_and_exit "$LINENO: terraform initialization failed."
+
+terraform get -update=true || error_and_exit "$LINENO: terraform get failed."
+
+[ -f ./pre-deploy.sh ] && . ./pre-deploy.sh
+
+terraform plan -input=false -out $TF_PLAN $TF_PLAN_OPTS || error_and_exit "$LINENO: terraform plan failed."
+
+terraform apply -input=false -auto-approve $TF_PLAN || error_and_exit "$LINENO: terraform apply failed."
+
+[ -f ./post-deploy.sh ] && . ./post-deploy.sh
+
+exit 0
