@@ -31,7 +31,8 @@
       "options": {
         "awslogs-group": "$${awslogs-group}",
         "awslogs-region": "$${awslogs-region}",
-        "awslogs-stream-prefix": "$${awslogs-stream-prefix}"
+        "awslogs-stream-prefix": "$${awslogs-stream-prefix}",
+        "awslogs-multiline-pattern": "^(debug|info|warn|error):"
       }
     }
   }
