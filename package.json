@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/hfreire/browser-as-a-service#readme",
   "dependencies": {
-    "health-checkup": "1.0.33",
+    "health-checkup": "1.0.34",
     "lodash": "4.17.15",
     "modern-logger": "1.5.52",
     "puppeteer": "2.0.0",
