@@ -1,7 +1,7 @@
 # A web browser :earth_americas: hosted as a service, to render your JavaScript web pages as HTML
 
-[![Build Status](https://travis-ci.org/hfreire/browser-as-a-service.svg?branch=master)](https://travis-ci.org/hfreire/browser-as-a-service)
-[![Coverage Status](https://coveralls.io/repos/github/hfreire/browser-as-a-service/badge.svg?branch=master)](https://coveralls.io/github/hfreire/browser-as-a-service?branch=master)
+[![](https://github.com/hfreire/browser-as-a-service/workflows/ci/badge.svg)](https://github.com/hfreire/browser-as-a-service/actions?workflow=ci)
+[![](https://github.com/hfreire/browser-as-a-service/workflows/cd/badge.svg)](https://github.com/hfreire/browser-as-a-service/actions?workflow=cd)
 [![Known Vulnerabilities](https://snyk.io/test/github/hfreire/browser-as-a-service/badge.svg)](https://snyk.io/test/github/hfreire/browser-as-a-service)
 [![](https://img.shields.io/github/release/hfreire/browser-as-a-service.svg)](https://github.com/hfreire/browser-as-a-service/releases)
 [![Docker Stars](https://img.shields.io/docker/stars/hfreire/browser-as-a-service.svg)](https://hub.docker.com/r/hfreire/browser-as-a-service/)

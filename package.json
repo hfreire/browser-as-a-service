@@ -21,7 +21,7 @@
     "modern-logger": "1.5.52",
     "puppeteer": "1.20.0",
     "random-http-useragent": "1.1.19",
-    "serverful": "1.4.49"
+    "serverful": "1.4.51"
   },
   "devDependencies": {
     "coveralls": "3.0.6",
@@ -79,7 +79,7 @@
     "snyk:protect": "./node_modules/.bin/snyk protect",
     "docker:build": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/scripts/build",
     "docker:push": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/scripts/push",
-    "docker:test": "./share/docker/scripts/test",
+    "docker:test": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/scripts/test",
     "terraform:deploy": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/terraform/scripts/deploy",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "semantic-release": "./node_modules/.bin/semantic-release",
@@ -88,8 +88,6 @@
     "prepare": "npm run snyk:protect",
     "test": "npm run clean && npm run lint && npm run jest",
     "commit": "./node_modules/.bin/commit-wizard",
-    "build": "npm run docker:build",
-    "push": "npm run docker:push",
     "deploy": "npm run terraform:deploy",
     "start": "node src/app.js"
   }

@@ -30,6 +30,6 @@ CID=$(docker run --entrypoint "./test.sh" -d $IMAGE_NAME)
 
 docker logs -f $CID
 
-docker wait $CID
+RET=$(docker wait $CID)
 
-exit 0
+exit $RET

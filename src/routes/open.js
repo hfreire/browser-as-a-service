@@ -7,7 +7,7 @@
 
 const { Route } = require('serverful')
 
-const Joi = require('joi')
+const Joi = require('@hapi/joi')
 
 const Browser = require('../browser')
 
@@ -24,14 +24,14 @@ class Open extends Route {
 
   validate () {
     return {
-      query: {
+      query: Joi.object({
         key: Joi.string()
           .optional()
           .description('the access API key'),
         url: Joi.string()
           .required()
           .description('the web page URL to open')
-      },
+      }),
       headers: Joi.object({
         'x-api-key': Joi.string()
           .optional()

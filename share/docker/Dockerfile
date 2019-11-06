@@ -14,15 +14,28 @@ ARG VERSION_BUILD_DATE
 ENV VERSION_BUILD_DATE $VERSION_BUILD_DATE
 
 # Create app directory
-RUN mkdir /home/node/$NAME \
-  && chown node:node /home/node/$NAME
+RUN set -eux; \
+  mkdir /home/node/$NAME; \
+  chown node:node /home/node/$NAME
 WORKDIR /home/node/$NAME
 
 # Install utils
-RUN apk --no-cache add \
+RUN set -x \
+  && apk --no-cache add \
     su-exec \
     curl \
     netcat-openbsd
+
+# Install chromium
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
+RUN set -x \
+  && apk update && apk upgrade \
+  && echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
+  && echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
+  && apk --no-cache add \
+      chromium@edge \
+      nss@edge
 
 # Copy app source
 COPY --chown=node:node package.json package.json
@@ -32,15 +45,9 @@ COPY --chown=node:node share/docker/start.sh start.sh
 COPY --chown=node:node share/docker/test.sh test.sh
 
 # Install npm packages
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV PUPPETEER_EXECUTABLE_PATH /usr/bin/chromium-browser
-RUN apk update && apk upgrade && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-    apk add --no-cache \
-      chromium@edge \
-      nss@edge \
-  && su-exec node npm install --production
+RUN set -x \
+  && su-exec node npm install --production \
+  && su-exec node npm cache clean --force && npm cache clean --force
 
 EXPOSE 3000
 

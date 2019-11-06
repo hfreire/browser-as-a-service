@@ -75,7 +75,7 @@ You can read more about creating a GitHub pull request from a fork [here](https:
 ### How to get your pull request accepted
 Every pull request is welcomed, but it's important, as well, to have maintainable code and avoid regression bugs while adding features or fixing other bugs. 
 
-Once you generate a pull request, GitHub and third-party apps will verify if the changes are suitable to be merged with upstream. [Travis](https://travis-ci.org/hfreire/browser-as-a-service) will verify your changes for style guide violations and failing test cases, while, [Coveralls](https://coveralls.io/github/hfreire/browser-as-a-service) will verify the coverage of the automated test cases against the code.
+Once you generate a pull request, GitHub and third-party apps will verify if the changes are suitable to be merged with upstream. [GitHub Actions CI workflow](https://github.com/hfreire/hugo-exec-sh/actions?workflow=ci) will verify your changes for style guide violations and failing test cases, while, [Coveralls](https://coveralls.io/github/hfreire/browser-as-a-service) will verify the coverage of the automated test cases against the code.
 
 You are encouraged to verify your changes by testing the code locally.
 

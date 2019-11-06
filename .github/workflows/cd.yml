@@ -1,0 +1,56 @@
+name: cd
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    env:
+      CI: true
+      TF_IN_AUTOMATION: true
+      VERSION_COMMIT: ${{ github.sha }}
+
+    steps:
+      - name: Set VERSION env var
+        run: echo ::set-env name=VERSION::${GITHUB_REF##*/}
+      - uses: actions/checkout@v1
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.13
+      - uses: azure/docker-login@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build docker image
+        run: npm run docker:build
+      - name: Push docker image
+        run: npm run docker:push
+      - name: Setup terraform
+        run: |
+          curl -fSL "https://releases.hashicorp.com/terraform/0.12.9/terraform_0.12.9_linux_amd64.zip" -o terraform.zip && \
+          echo "69712c6216cc09b7eca514b9fb137d4b1fead76559c66f338b4185e1c347ace5 *terraform.zip" | sha256sum -c - && \
+          sudo unzip -o -d /usr/local/bin/ terraform.zip
+      - name: Deploy in AWS
+        run: npm run deploy
+        env:
+          ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME: ${{ secrets.ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME }}
+          ANTIFRAGILE_STATE_AWS_DYNAMODB_TABLE: ${{ secrets.ANTIFRAGILE_STATE_AWS_DYNAMODB_TABLE }}
+          ANTIFRAGILE_STATE_AWS_REGION: ${{ secrets.ANTIFRAGILE_STATE_AWS_REGION }}
+          ANTIFRAGILE_STATE_AWS_S3_BUCKET: ${{ secrets.ANTIFRAGILE_STATE_AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          TF_VAR_url: ${{ secrets.TF_VAR_url }}
+          TF_VAR_mail__options__host: ${{ secrets.TF_VAR_mail__options__host }}
+          TF_VAR_mail__options__auth__user: ${{ secrets.TF_VAR_mail__options__auth__user }}
+          TF_VAR_mail__options__auth__pass: ${{ secrets.TF_VAR_mail__options__auth__pass }}
+          TF_VAR_mail__from: ${{ secrets.TF_VAR_mail__from }}
+          TF_VAR_cdn_hostname: ${{ secrets.TF_VAR_cdn_hostname }}
+          TF_VAR_cdn_hostname_redirects: ${{ secrets.TF_VAR_cdn_hostname_redirects }}
+          TF_VAR_database_user_password: ${{ secrets.TF_VAR_database_user_password }}
