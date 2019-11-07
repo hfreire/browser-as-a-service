@@ -27,7 +27,7 @@ data "template_file" "container_definitions" {
 }
 
 module "service" {
-  source = "../../../antifragile-service"
+  source = "github.com/antifragile-systems/antifragile-service"
 
   name                  = var.name
   container_definitions = data.template_file.container_definitions.rendered
