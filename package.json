@@ -16,30 +16,30 @@
   },
   "homepage": "https://github.com/hfreire/browser-as-a-service#readme",
   "dependencies": {
-    "health-checkup": "1.0.33",
+    "health-checkup": "1.0.34",
     "lodash": "4.17.15",
-    "modern-logger": "1.5.52",
-    "puppeteer": "1.20.0",
-    "random-http-useragent": "1.1.19",
-    "serverful": "1.4.51"
+    "modern-logger": "1.5.53",
+    "puppeteer": "2.0.0",
+    "random-http-useragent": "1.1.20",
+    "serverful": "1.4.52"
   },
   "devDependencies": {
-    "coveralls": "3.0.6",
-    "eslint": "6.5.1",
+    "coveralls": "3.0.7",
+    "eslint": "6.6.0",
     "eslint-config-hfreire": "2.0.4",
     "eslint-plugin-import": "2.18.2",
-    "eslint-plugin-jest": "22.17.0",
-    "eslint-plugin-json": "1.4.0",
-    "eslint-plugin-mocha": "6.1.1",
+    "eslint-plugin-jest": "23.0.2",
+    "eslint-plugin-json": "2.0.1",
+    "eslint-plugin-mocha": "6.2.1",
     "eslint-plugin-node": "10.0.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
-    "eslint-plugin-unicorn": "12.0.2",
+    "eslint-plugin-unicorn": "12.1.0",
     "jest": "24.9.0",
     "npm-merge-driver": "2.3.5",
     "pre-git": "3.17.1",
-    "semantic-release": "15.13.24",
-    "snyk": "1.243.0"
+    "semantic-release": "15.13.30",
+    "snyk": "1.244.0"
   },
   "config": {
     "pre-git": {
