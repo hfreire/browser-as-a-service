@@ -12,6 +12,16 @@ const VERSION_COMMIT = process.env.VERSION_COMMIT
 const VERSION_BUILD_DATE = process.env.VERSION_BUILD_DATE
 
 const Logger = require('modern-logger')
+Logger.configure({
+  transports: {
+    console: [
+      {
+        colorize: false,
+        timestamp: false
+      }
+    ]
+  }
+})
 
 if (VERSION && VERSION_COMMIT && VERSION_BUILD_DATE) {
   Logger.info(`Running version ${VERSION} from commit ${VERSION_COMMIT} built on ${VERSION_BUILD_DATE}`)
