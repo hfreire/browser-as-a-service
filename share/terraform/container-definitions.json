@@ -22,6 +22,10 @@
       {
         "name": "BASE_PATH",
         "value": "/${name}"
+      },
+      {
+        "name": "LOG_LEVEL",
+        "value": "${log_level}"
       }
     ],
     "mountPoints": [],

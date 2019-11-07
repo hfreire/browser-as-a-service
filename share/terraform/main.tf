@@ -18,18 +18,18 @@ provider "template" {
 data "template_file" "container_definitions" {
   template = file("${path.module}/container-definitions.json")
 
-  vars {
+  vars = {
     name      = var.name
     image     = "${var.docker_repo}/${var.name}:${var.docker_image_tag}"
+    api_keys  = join(",", var.api_keys)
     log_level = var.log_level
   }
 }
 
-module "browser-as-a-service" {
-  source = "github.com/antifragile-systems/antifragile-service"
+module "service" {
+  source = "../../../antifragile-service"
 
   name                  = var.name
-  domain_name           = var.domain_name
   container_definitions = data.template_file.container_definitions.rendered
 
   api_enabled      = 1
@@ -38,4 +38,5 @@ module "browser-as-a-service" {
   api_quota_offset = 0
   api_quota_period = "DAY"
   aws_region       = var.aws_region
+  cdn_hostname     = ""
 }
