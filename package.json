@@ -28,7 +28,7 @@
     "eslint": "6.6.0",
     "eslint-config-hfreire": "2.0.4",
     "eslint-plugin-import": "2.18.2",
-    "eslint-plugin-jest": "23.0.2",
+    "eslint-plugin-jest": "23.0.3",
     "eslint-plugin-json": "2.0.1",
     "eslint-plugin-mocha": "6.2.1",
     "eslint-plugin-node": "10.0.0",
