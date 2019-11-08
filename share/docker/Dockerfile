@@ -1,4 +1,4 @@
-FROM node:13.0.1-alpine
+FROM node:13.1.0-alpine
 
 LABEL maintainer="hugo@exec.sh"
 
