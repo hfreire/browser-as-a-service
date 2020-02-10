@@ -1,10 +1,9 @@
 FROM node:13.8.0-alpine AS node
 
 FROM node AS build
-
+ARG NAME
 ARG NPM_TOKEN
-
-WORKDIR /tmp/build
+WORKDIR /tmp/$NAME
 
 # Install npm packages
 COPY package.json package.json
@@ -19,19 +18,17 @@ RUN set -x \
 
 FROM node
 LABEL maintainer="hugo@exec.sh"
-
 ARG NAME
 ARG VERSION
 ARG VERSION_COMMIT
 ARG VERSION_BUILD_DATE
-
 WORKDIR /home/node/$NAME
 
 # Copy app build
 RUN chown node:node /home/node/$NAME
-COPY --from=build --chown=node:node /tmp/build /home/node/$NAME
-COPY share/docker/start.sh start.sh
-COPY share/docker/test.sh test.sh
+COPY --from=build --chown=node:node /tmp/$NAME /home/node/$NAME
+COPY --chown=node:node share/docker/start.sh start.sh
+COPY --chown=node:node share/docker/test.sh test.sh
 
 # Install base utils
 RUN set -x \
