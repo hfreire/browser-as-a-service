@@ -6,14 +6,14 @@ ARG NPM_TOKEN
 WORKDIR /tmp/$NAME
 
 # Install npm packages
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-RUN npm install --production
+COPY package.json package-lock.json .snyk ./
+RUN npm ci
 
 # Build app
 COPY src src/
 RUN set -x \
   && npm run build --if-present \
+  && npm prune --production \
   && npm cache clean --force
 
 FROM node
