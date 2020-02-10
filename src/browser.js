@@ -13,7 +13,7 @@ const _ = require('lodash')
 
 const RandomHttpUserAgent = require('random-http-useragent')
 
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-core')
 
 const defaultOptions = {
   puppeteer: {
