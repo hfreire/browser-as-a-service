@@ -7,7 +7,7 @@ WORKDIR /tmp/$NAME
 
 # Install npm packages
 COPY package.json package-lock.json .snyk ./
-RUN npm ci
+RUN NODE_ENV= npm ci
 
 # Build app
 COPY src src/
