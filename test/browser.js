@@ -11,8 +11,8 @@ describe('Browser', () => {
   let RandomHttpUserAgent
 
   beforeEach(() => {
-    puppeteer = require('puppeteer')
-    jest.mock('puppeteer')
+    puppeteer = require('puppeteer-core')
+    jest.mock('puppeteer-core')
 
     RandomHttpUserAgent = require('random-http-useragent')
     jest.mock('random-http-useragent')
