@@ -3,14 +3,17 @@ FROM node:13.8.0-alpine AS node
 FROM node AS build
 ARG NAME
 ARG NPM_TOKEN
+USER node
+
+RUN mkdir /home/node/$NAME
 WORKDIR /home/node/$NAME
 
 # Install npm packages
-COPY package.json package-lock.json .snyk ./
+COPY --chown=node:node package.json package-lock.json .snyk ./
 RUN NODE_ENV= npm ci
 
 # Build app
-COPY src src/
+COPY --chown=node:node src src/
 RUN set -x \
   && npm run build --if-present \
   && npm prune --production \
@@ -22,13 +25,6 @@ ARG NAME
 ARG VERSION
 ARG VERSION_COMMIT
 ARG VERSION_BUILD_DATE
-WORKDIR /home/node/$NAME
-
-# Copy app build
-RUN chown node:node /home/node/$NAME
-COPY --from=build --chown=node:node /home/node/$NAME /home/node/$NAME
-COPY --chown=node:node share/docker/start.sh start.sh
-COPY --chown=node:node share/docker/test.sh test.sh
 
 # Install base utils
 RUN set -x \
@@ -36,6 +32,14 @@ RUN set -x \
     su-exec \
     curl \
     netcat-openbsd
+
+RUN su-exec node mkdir /home/node/$NAME
+WORKDIR /home/node/$NAME
+
+# Copy app build
+COPY --from=build --chown=node:node /home/node/$NAME /home/node/$NAME
+COPY --chown=node:node share/docker/start.sh start.sh
+COPY --chown=node:node share/docker/test.sh test.sh
 
 # Install chromium
 RUN set -x \
