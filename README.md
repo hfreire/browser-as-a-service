@@ -2,6 +2,7 @@
 
 [![](https://github.com/hfreire/browser-as-a-service/workflows/ci/badge.svg)](https://github.com/hfreire/browser-as-a-service/actions?workflow=ci)
 [![](https://github.com/hfreire/browser-as-a-service/workflows/cd/badge.svg)](https://github.com/hfreire/browser-as-a-service/actions?workflow=cd)
+[![Coverage Status](https://coveralls.io/repos/github/hfreire/browser-as-a-service/badge.svg?branch=master)](https://coveralls.io/github/hfreire/browser-as-a-service?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/hfreire/browser-as-a-service/badge.svg)](https://snyk.io/test/github/hfreire/browser-as-a-service)
 [![](https://img.shields.io/github/release/hfreire/browser-as-a-service.svg)](https://github.com/hfreire/browser-as-a-service/releases)
 [![Docker Stars](https://img.shields.io/docker/stars/hfreire/browser-as-a-service.svg)](https://hub.docker.com/r/hfreire/browser-as-a-service/)
@@ -18,7 +19,7 @@
 #### Use it in your terminal
 Using it in your terminal requires [Docker](https://www.docker.com) installed in your system.
 
-##### Run the Docker image in a container 
+##### Run the Docker image in a container
 Detach from the container and expose port `9453`.
 ```
 docker run -d -p "9453:3000" hfreire/browser-as-a-service
@@ -92,7 +93,7 @@ ANTIFRAGILE_STATE_AWS_DYNAMODB_TABLE | The AWS DynamoDB table used for the antif
 ANTIFRAGILE_INFRASTRUCTURE_DOMAIN_NAME | The domain used for the antifragile infrastructure. | true | `undefined`
 
 ### How to contribute
-You can contribute either with code (e.g., new features, bug fixes and documentation) or by [donating 5 EUR](https://paypal.me/hfreire/5). You can read the [contributing guidelines](CONTRIBUTING.md) for instructions on how to contribute with code. 
+You can contribute either with code (e.g., new features, bug fixes and documentation) or by [donating 5 EUR](https://paypal.me/hfreire/5). You can read the [contributing guidelines](CONTRIBUTING.md) for instructions on how to contribute with code.
 
 All donation proceedings will go to the [Sverige för UNHCR](https://sverigeforunhcr.se), a swedish partner of the [UNHCR - The UN Refugee Agency](http://www.unhcr.org), a global organisation dedicated to saving lives, protecting rights and building a better future for refugees, forcibly displaced communities and stateless people.
 
