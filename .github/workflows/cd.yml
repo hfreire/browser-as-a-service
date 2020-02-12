@@ -46,11 +46,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          TF_VAR_url: ${{ secrets.TF_VAR_url }}
-          TF_VAR_mail__options__host: ${{ secrets.TF_VAR_mail__options__host }}
-          TF_VAR_mail__options__auth__user: ${{ secrets.TF_VAR_mail__options__auth__user }}
-          TF_VAR_mail__options__auth__pass: ${{ secrets.TF_VAR_mail__options__auth__pass }}
-          TF_VAR_mail__from: ${{ secrets.TF_VAR_mail__from }}
-          TF_VAR_cdn_hostname: ${{ secrets.TF_VAR_cdn_hostname }}
-          TF_VAR_cdn_hostname_redirects: ${{ secrets.TF_VAR_cdn_hostname_redirects }}
-          TF_VAR_database_user_password: ${{ secrets.TF_VAR_database_user_password }}
+          TF_VAR_api_keys: ${{ secrets.TF_VAR_api_keys }}
