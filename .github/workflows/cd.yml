@@ -33,8 +33,8 @@ jobs:
         run: npm run docker:push
       - name: Setup terraform
         run: |
-          curl -fSL "https://releases.hashicorp.com/terraform/0.12.9/terraform_0.12.9_linux_amd64.zip" -o terraform.zip && \
-          echo "69712c6216cc09b7eca514b9fb137d4b1fead76559c66f338b4185e1c347ace5 *terraform.zip" | sha256sum -c - && \
+          curl -fSL "https://releases.hashicorp.com/terraform/0.12.18/terraform_0.12.18_linux_amd64.zip" -o terraform.zip && \
+          echo "e7ebe3ca988768bffe0c239d107645bd53515354cff6cbe5651718195a151700 *terraform.zip" | sha256sum -c - && \
           sudo unzip -o -d /usr/local/bin/ terraform.zip
       - name: Deploy in AWS
         run: npm run deploy
