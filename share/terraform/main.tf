@@ -26,7 +26,7 @@ data "template_file" "container_definitions" {
   }
 }
 
-module "service" {
+module "browser-as-a-service" {
   source = "github.com/antifragile-systems/antifragile-service"
 
   name                  = var.name
