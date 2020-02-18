@@ -1,5 +1,21 @@
 FROM node:13.8.0-alpine AS node
 
+# Install base utils
+RUN set -x \
+  && apk --no-cache add \
+    su-exec \
+    curl \
+    netcat-openbsd
+
+# Install chromium
+RUN set -x \
+  && apk update && apk upgrade \
+  && echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
+  && echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
+  && apk --no-cache add \
+      chromium@edge \
+      nss@edge
+
 FROM node AS build
 ARG NAME
 ARG NPM_TOKEN
@@ -26,13 +42,6 @@ ARG VERSION
 ARG VERSION_COMMIT
 ARG VERSION_BUILD_DATE
 
-# Install base utils
-RUN set -x \
-  && apk --no-cache add \
-    su-exec \
-    curl \
-    netcat-openbsd
-
 RUN su-exec node mkdir /home/node/$NAME
 WORKDIR /home/node/$NAME
 
@@ -40,15 +49,6 @@ WORKDIR /home/node/$NAME
 COPY --from=build --chown=node:node /home/node/$NAME /home/node/$NAME
 COPY --chown=node:node share/docker/start.sh start.sh
 COPY --chown=node:node share/docker/test.sh test.sh
-
-# Install chromium
-RUN set -x \
-  && apk update && apk upgrade \
-  && echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories \
-  && echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories \
-  && apk --no-cache add \
-      chromium@edge \
-      nss@edge
 
 # Set app runtime environment variables
 ENV NAME $NAME
