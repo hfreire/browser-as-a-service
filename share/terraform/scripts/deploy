@@ -43,7 +43,7 @@ terraform get -update=true || error_and_exit "$LINENO: terraform get failed."
 
 [ -f ./pre-deploy.sh ] && . ./pre-deploy.sh
 
-terraform plan -input=false -out $TF_PLAN "$TF_PLAN_OPTS" || error_and_exit "$LINENO: terraform plan failed."
+terraform plan -input=false -out $TF_PLAN $TF_PLAN_OPTS || error_and_exit "$LINENO: terraform plan failed."
 
 terraform apply -input=false -auto-approve $TF_PLAN || error_and_exit "$LINENO: terraform apply failed."
 
