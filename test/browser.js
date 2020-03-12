@@ -26,7 +26,12 @@ describe('Browser', () => {
 
     beforeEach(() => {
       browser = { newPage: jest.fn(), close: jest.fn() }
-      page = { setUserAgent: jest.fn(), on: jest.fn(), goto: jest.fn(), evaluate: jest.fn() }
+      page = {
+        setUserAgent: jest.fn(),
+        on: jest.fn(),
+        goto: jest.fn(),
+        evaluate: jest.fn()
+      }
 
       browser.newPage.mockResolvedValue(page)
       puppeteer.launch.mockResolvedValue(browser)

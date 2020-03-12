@@ -7,7 +7,6 @@
 
 const { Serverful } = require('serverful')
 
-class Server extends Serverful {
-}
+class Server extends Serverful {}
 
 module.exports = new Server()

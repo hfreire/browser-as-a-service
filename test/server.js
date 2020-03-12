@@ -5,20 +5,13 @@
  * LICENSE.md file in the root directory of this source tree.
  */
 
+const { Serverful } = require('serverful')
+const subject = require('../src/server')
+
+jest.mock('serverful')
+
 describe('Server', () => {
-  let subject
-  let Serverful
-
-  beforeAll(() => {
-    ({ Serverful } = require('serverful'))
-    jest.mock('serverful')
-  })
-
   describe('when exporting', () => {
-    beforeEach(() => {
-      subject = require('../src/server')
-    })
-
     it('should be instance of serverful', () => {
       expect(subject).toBeInstanceOf(Serverful)
     })

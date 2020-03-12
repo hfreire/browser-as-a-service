@@ -46,7 +46,9 @@ describe('App', () => {
     })
 
     it('should log version information', () => {
-      expect(Logger.info).toHaveBeenCalledWith(`Running version ${VERSION} from commit ${VERSION_COMMIT} built on ${VERSION_BUILD_DATE}`)
+      expect(Logger.info).toHaveBeenCalledWith(
+        `Running version ${VERSION} from commit ${VERSION_COMMIT} built on ${VERSION_BUILD_DATE}`
+      )
     })
   })
 

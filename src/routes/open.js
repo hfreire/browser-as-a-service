@@ -5,24 +5,28 @@
  * LICENSE.md file in the root directory of this source tree.
  */
 
-const { Route } = require('serverful')
-
+// eslint-disable-next-line import/no-extraneous-dependencies
 const Joi = require('@hapi/joi')
-
+const { Route } = require('serverful')
 const Browser = require('../browser')
 
 class Open extends Route {
-  constructor () {
-    super('GET', '/open', 'Opens web page in headless browser', 'Returns opened web page')
+  constructor() {
+    super(
+      'GET',
+      '/open',
+      'Opens web page in headless browser',
+      'Returns opened web page'
+    )
   }
 
-  async handler ({ query }, h) {
+  async handler({ query }) {
     const { url } = query
 
     return Browser.open(url)
   }
 
-  validate () {
+  validate() {
     return {
       query: Joi.object({
         key: Joi.string()

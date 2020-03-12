@@ -26,19 +26,11 @@
   "devDependencies": {
     "coveralls": "3.0.9",
     "eslint": "6.8.0",
-    "eslint-config-hfreire": "2.0.7",
-    "eslint-plugin-import": "2.20.1",
-    "eslint-plugin-jest": "23.8.2",
-    "eslint-plugin-json": "2.1.0",
-    "eslint-plugin-mocha": "6.3.0",
-    "eslint-plugin-node": "11.0.0",
-    "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-standard": "4.0.1",
-    "eslint-plugin-unicorn": "17.2.0",
+    "eslint-config-hfreire": "3.0.4",
     "jest": "25.1.0",
     "npm-merge-driver": "2.3.5",
     "pre-git": "3.17.1",
-    "prettier": "^1.19.1",
+    "prettier": "1.19.1",
     "semantic-release": "17.0.4",
     "snyk": "1.298.1"
   },
@@ -53,7 +45,7 @@
     "testEnvironment": "node",
     "setupTestFrameworkScriptFile": "./test/helper.js",
     "testMatch": [
-      "<rootDir>/test/**.js"
+      "<rootDir>/test/**/*.js"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",

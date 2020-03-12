@@ -7,33 +7,28 @@
 
 /* eslint-disable no-undef */
 
-const PUPPETEER_EXECUTABLE_PATH = process.env.PUPPETEER_EXECUTABLE_PATH
-
 const _ = require('lodash')
-
 const RandomHttpUserAgent = require('random-http-useragent')
-
 const puppeteer = require('puppeteer-core')
+
+const { PUPPETEER_EXECUTABLE_PATH } = process.env
 
 const defaultOptions = {
   puppeteer: {
     executablePath: PUPPETEER_EXECUTABLE_PATH,
-    args: [
-      '--no-sandbox',
-      '--disable-dev-shm-usage'
-    ]
+    args: ['--no-sandbox', '--disable-dev-shm-usage']
   },
   'random-http-useragent': {}
 }
 
 class Browser {
-  constructor () {
+  constructor() {
     this._options = _.defaultsDeep({}, defaultOptions)
 
     RandomHttpUserAgent.configure(_.get(this._options, 'random-http-useragent'))
   }
 
-  async open (url) {
+  async open(url) {
     if (!url) {
       throw new Error('invalid arguments')
     }
@@ -47,17 +42,23 @@ class Browser {
     const page = await browser.newPage()
     await page.setUserAgent(userAgent)
 
-    page.on('console', (consoleMessage) => {
+    page.on('console', consoleMessage => {
       if (!result.console) {
         result.console = []
       }
 
-      result.console.push({ type: consoleMessage.type(), text: consoleMessage.text() })
+      result.console.push({
+        type: consoleMessage.type(),
+        text: consoleMessage.text()
+      })
     })
     await page.goto(url)
 
     result.elements = await page.evaluate(() => {
-      return new XMLSerializer().serializeToString(document.doctype) + document.documentElement.outerHTML
+      return (
+        new XMLSerializer().serializeToString(document.doctype) +
+        document.documentElement.outerHTML
+      )
     })
 
     await browser.close()

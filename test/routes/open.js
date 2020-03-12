@@ -19,7 +19,6 @@ describe('Open', () => {
   })
 
   describe('when handling a request to open a url', () => {
-    const result = {}
     const query = {}
     const request = { query }
     let h
@@ -27,15 +26,15 @@ describe('Open', () => {
     beforeEach(() => {
       h = jest.fn()
 
-      Browser.open.mockResolvedValue(result)
+      Browser.open.mockResolvedValue({})
 
       subject = require('../../src/routes/open')
     })
 
     it('should return result', async () => {
-      const _result = await subject.handler(request, h)
+      const result = await subject.handler(request, h)
 
-      expect(_result).toEqual(result)
+      expect(result).toEqual({})
     })
   })
 
@@ -54,13 +53,7 @@ describe('Open', () => {
     })
 
     it('should propagate error', async () => {
-      expect.assertions(1)
-
-      try {
-        await subject.handler(request, h)
-      } catch (thrown) {
-        expect(thrown).toEqual(error)
-      }
+      await expect(subject.handler(request, h)).rejects.toThrow(error)
     })
   })
 })
