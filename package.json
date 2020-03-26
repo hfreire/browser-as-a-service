@@ -28,7 +28,7 @@
     "eslint": "6.8.0",
     "eslint-config-hfreire": "3.0.8",
     "jest": "25.2.0",
-    "npm-merge-driver": "2.3.5",
+    "npm-merge-driver": "2.3.6",
     "pre-git": "3.17.1",
     "prettier": "1.19.1",
     "semantic-release": "17.0.4",
