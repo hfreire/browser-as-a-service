@@ -30,7 +30,7 @@
     "jest": "25.2.7",
     "npm-merge-driver": "2.3.6",
     "pre-git": "3.17.1",
-    "prettier": "1.19.1",
+    "prettier": "2.0.2",
     "semantic-release": "17.0.4",
     "snyk": "1.305.0"
   },
