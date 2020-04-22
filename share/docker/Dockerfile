@@ -1,4 +1,4 @@
-FROM node:13.13.0-alpine AS node
+FROM node:14.0.0-alpine AS node
 
 # Install base utils
 RUN set -x \
