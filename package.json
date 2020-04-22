@@ -19,7 +19,7 @@
     "health-checkup": "1.0.35",
     "lodash": "4.17.15",
     "modern-logger": "1.5.57",
-    "puppeteer-core": "3.0.0",
+    "puppeteer-core": "3.0.1",
     "random-http-useragent": "1.1.23",
     "serverful": "1.4.72"
   },
