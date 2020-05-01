@@ -21,7 +21,8 @@
     "modern-logger": "1.5.58",
     "puppeteer-core": "3.0.2",
     "random-http-useragent": "1.1.23",
-    "serverful": "1.4.72"
+    "serverful": "1.4.72",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "coveralls": "3.1.0",
@@ -31,8 +32,7 @@
     "npm-merge-driver": "2.3.6",
     "pre-git": "3.17.1",
     "prettier": "1.19.1",
-    "semantic-release": "17.0.7",
-    "snyk": "1.316.1"
+    "semantic-release": "17.0.7"
   },
   "config": {
     "pre-git": {
@@ -78,10 +78,11 @@
     "semantic-release": "./node_modules/.bin/semantic-release",
     "clean": "rm -rf coverage",
     "lint": "npm run eslint",
-    "prepare": "npm run snyk:protect",
+    "prepare": "npm run snyk-protect && npm run snyk:protect",
     "test": "npm run clean && npm run lint && npm run jest",
     "commit": "./node_modules/.bin/commit-wizard",
     "deploy": "npm run terraform:deploy",
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "snyk-protect": "snyk protect"
   }
 }
