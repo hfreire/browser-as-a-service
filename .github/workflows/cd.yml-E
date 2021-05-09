@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Set VERSION env var
-        run: echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        run: echo ::set-env name=VERSION::${GITHUB_REF##*/}
       - uses: actions/checkout@v1
         with:
           ref: ${{ github.ref }}
