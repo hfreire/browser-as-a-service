@@ -24,7 +24,6 @@
     "serverful": "1.4.89"
   },
   "devDependencies": {
-    "coveralls": "3.1.0",
     "eslint": "6.8.0",
     "eslint-config-hfreire": "3.0.58",
     "jest": "26.6.3",
@@ -74,7 +73,6 @@
     "docker:push": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/scripts/push",
     "docker:test": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/docker/scripts/test",
     "terraform:deploy": "DOCKER_REPO=hfreire NAME=$npm_package_name ./share/terraform/scripts/deploy",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "semantic-release": "./node_modules/.bin/semantic-release",
     "clean": "rm -rf coverage",
     "lint": "npm run eslint",
