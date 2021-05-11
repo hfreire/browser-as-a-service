@@ -27,7 +27,6 @@ jobs:
       - name: Test docker image
         run: npm run docker:test
       - name: Submit coveralls test coverage report
-        if: ${{ always() }}
         run: npm run coveralls
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
