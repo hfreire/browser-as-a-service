@@ -21,7 +21,7 @@
     "modern-logger": "1.5.83",
     "puppeteer-core": "5.5.0",
     "random-http-useragent": "1.1.32",
-    "serverful": "1.4.89"
+    "serverful": "1.4.92"
   },
   "devDependencies": {
     "eslint": "6.8.0",
