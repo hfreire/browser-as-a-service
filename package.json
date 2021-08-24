@@ -30,7 +30,7 @@
     "npm-merge-driver": "2.3.6",
     "pre-git": "3.17.1",
     "prettier": "2.2.1",
-    "semantic-release": "17.3.7",
+    "semantic-release": "17.4.6",
     "snyk": "1.439.3"
   },
   "config": {
