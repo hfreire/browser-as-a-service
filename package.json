@@ -31,7 +31,7 @@
     "pre-git": "3.17.1",
     "prettier": "2.2.1",
     "semantic-release": "17.3.7",
-    "snyk": "1.439.3"
+    "snyk": "1.736.0"
   },
   "config": {
     "pre-git": {
